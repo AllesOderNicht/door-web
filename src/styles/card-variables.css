@@ -1,0 +1,117 @@
+/* 卡片样式变量 */
+:root {
+  /* 卡片高度标准 */
+  --card-min-height-mobile: 280px;
+  --card-min-height-tablet: 320px;
+  --card-min-height-desktop: 360px;
+  
+  /* 统计卡片高度标准 */
+  --stat-card-min-height-mobile: 120px;
+  --stat-card-min-height-tablet: 140px;
+  --stat-card-min-height-desktop: 160px;
+  
+  /* 卡片通用样式 */
+  --card-border-radius: 10px;
+  --card-padding: 40px 30px;
+  --card-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --card-box-shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.15);
+  --card-transition: all 0.4s ease;
+  
+  /* 卡片布局 */
+  --card-display: flex;
+  --card-flex-direction: column;
+  --card-justify-content: space-between;
+}
+
+/* 通用卡片样式类 */
+.card-base {
+  min-height: var(--card-min-height-mobile);
+  display: var(--card-display);
+  flex-direction: var(--card-flex-direction);
+  justify-content: var(--card-justify-content);
+  border-radius: var(--card-border-radius);
+  padding: var(--card-padding);
+  box-shadow: var(--card-box-shadow);
+  transition: var(--card-transition);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.card-base:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--card-box-shadow-hover);
+}
+
+/* 响应式高度 */
+@media (min-width: 768px) {
+  .card-base {
+    min-height: var(--card-min-height-tablet);
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-base {
+    min-height: var(--card-min-height-desktop);
+  }
+}
+
+/* 统计卡片样式类 */
+.stat-card-base {
+  min-height: var(--stat-card-min-height-mobile);
+  display: var(--card-display);
+  flex-direction: var(--card-flex-direction);
+  justify-content: center;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .stat-card-base {
+    min-height: var(--stat-card-min-height-tablet);
+  }
+}
+
+@media (min-width: 1024px) {
+  .stat-card-base {
+    min-height: var(--stat-card-min-height-desktop);
+  }
+}
+
+/* 文本截断通用样式 */
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-truncate-multiline {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6; /* 默认显示3行 */
+  line-height: 1.6;
+}
+
+.text-truncate-2-lines {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-height: 1.6;
+}
+
+.text-truncate-3-lines {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-height: 1.6;
+}
+
+.text-truncate-4-lines {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-height: 1.6;
+}

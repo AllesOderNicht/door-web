@@ -1,0 +1,109 @@
+/* 页脚样式 */
+.footer {
+  background-color: var(--dark);
+  color: #aaa;
+  padding: 70px 0 30px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footerContent {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  margin-bottom: 50px;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.footerColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.footerTitle {
+  color: white;
+  margin-bottom: 25px;
+  font-size: 20px;
+  position: relative;
+  padding-bottom: 10px;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 2px;
+    background: var(--secondary);
+    bottom: 0;
+    left: 0;
+  }
+}
+
+.footerDescription {
+  color: #aaa;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.socialLink {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: all 0.3s;
+  text-decoration: none;
+  
+  &:hover {
+    background: var(--secondary);
+    transform: translateY(-3px);
+  }
+}
+
+.footerLinks {
+  cursor: pointer;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footerLinkItem {
+  margin-bottom: 12px;
+}
+
+.footerLink {
+  color: #aaa;
+  text-decoration: none;
+  transition: color 0.3s;
+  
+  &:hover {
+    color: var(--secondary);
+  }
+}
+
+.copyright {
+  text-align: center;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #aaa;
+}

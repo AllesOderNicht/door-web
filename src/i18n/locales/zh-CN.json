@@ -1,0 +1,196 @@
+{
+  "nav": {
+    "home": "首页",
+    "services": "服务",
+    "cases": "案例展示",
+    "projects": "高难度工程",
+    "certifications": "资质证书",
+    "about": "关于我们",
+    "contact": "联系我们"
+  },
+  "hero": {
+    "title": "高端游轮与游艇",
+    "subtitle": "专业服务",
+    "description": "为最负盛名的船舶提供世界级的维修、保养和翻新服务",
+    "cta": "预约咨询"
+  },
+  "services": {
+    "title": "我们的服务",
+    "subtitle": "为豪华游轮和游艇量身定制的综合解决方案",
+    "mechanical": {
+      "title": "机械系统",
+      "description": "推进、转向和辅助系统的全面检修和维护。"
+    },
+    "electrical": {
+      "title": "电气与音视频系统",
+      "description": "最先进的电气系统、娱乐和导航技术。"
+    },
+    "interior": {
+      "title": "内部翻新",
+      "description": "豪华内部升级、家具修复和高端饰面。"
+    },
+    "exterior": {
+      "title": "外部涂装与饰面",
+      "description": "专门用于恶劣海洋环境的专业涂料和饰面。"
+    },
+    "safety": {
+      "title": "安全与合规",
+      "description": "全面安全系统升级，符合国际海事法规。"
+    },
+    "luxury": {
+      "title": "豪华设施",
+      "description": "高端设施和客用设施的安装和维护。"
+    }
+  },
+  "about": {
+    "title": "关于易洋海洋服务",
+    "subtitle": "专业的海洋工程团队",
+    "description": "我们拥有多年的海洋工程经验，致力于为客户提供最优质的服务",
+    "content": {
+      "paragraph1": "易洋海洋服务已迅速确立为豪华邮轮和超级游艇维护和维修服务的领先提供商，特别专注于亚洲市场。",
+      "paragraph2": "我们经过认证的海洋工程师、技术人员和工匠团队致力于维护最高质量和精度标准，确保我们服务的每艘船舶保持其价值、安全性和豪华吸引力。",
+      "paragraph3": "我们特别为在中国首艘国产大型邮轮爱达魔都号上的工作感到自豪，在那里我们提供了卓越的机械系统升级和内部精装修。"
+    },
+    "features": {
+      "quality": {
+        "title": "质量卓越",
+        "description": "致力于海洋服务最高质量标准"
+      },
+      "asia": {
+        "title": "亚洲专业化",
+        "description": "在服务不断增长的亚洲邮轮市场方面具有深厚专业知识"
+      },
+      "team": {
+        "title": "专家团队",
+        "description": "拥有丰富豪华船舶经验的专业技术人员"
+      }
+    },
+    "cta": "了解更多关于我们"
+  },
+  "cases": {
+    "title": "案例展示",
+    "subtitle": "展示我们在豪华船舶维护方面专业知识的近期项目",
+    "adaMagic": {
+      "title": "爱达魔都号翻新",
+      "description": "为中国首艘国产大型邮轮提供全面的机械系统升级和豪华内部精装修。"
+    },
+    "adaMediterranean": {
+      "title": "爱达地中海号升级",
+      "description": "为这艘豪华邮轮提供完整的电气系统现代化和豪华设施增强。"
+    },
+    "viewDetails": "查看详情",
+    "learnMore": "了解更多"
+  },
+  "projects": {
+    "title": "高难度工程",
+    "subtitle": "展示我们技术能力的具有挑战性的工程项目",
+    "emergency": {
+      "title": "紧急推进系统维修",
+      "difficulty": "高难度",
+      "description": "在豪华邮轮航行期间，对损坏的推进系统进行72小时紧急维修，需要在具有挑战性的条件下进行精密工程。"
+    },
+    "hull": {
+      "title": "船体结构加固",
+      "difficulty": "极高难度",
+      "description": "对因碰撞损坏的邮轮船体进行复杂的结构加固，需要创新的工程解决方案来保持船舶完整性。"
+    },
+    "control": {
+      "title": "集成控制系统",
+      "difficulty": "先进技术",
+      "description": "设计和实施完全集成的船舶控制系统，将导航、推进和酒店管理整合到单一平台。"
+    }
+  },
+  "certifications": {
+    "title": "资质证书",
+    "subtitle": "我们的认证和资质证明了我们对质量和安全的承诺",
+    "iso9001": {
+      "title": "ISO 9001:2015",
+      "description": "海洋维修和保养服务的质量管理体系认证。"
+    },
+    "iso14001": {
+      "title": "ISO 14001:2015",
+      "description": "可持续海洋运营的环境管理体系认证。"
+    },
+    "classnk": {
+      "title": "ClassNK 认证",
+      "description": "日本海事协会对船舶维修和保养服务的官方认证。"
+    },
+    "abs": {
+      "title": "ABS 认证",
+      "description": "美国船级社对海洋船舶维修和检验服务的认证。"
+    }
+  },
+  "contact": {
+    "title": "联系我们",
+    "subtitle": "与我们的团队联系，讨论您船舶的需求",
+    "info": {
+      "headquarters": {
+        "title": "我们的总部",
+        "details": ["易洋海洋服务中心", "港口路，上海 200000"]
+      },
+      "phone": {
+        "title": "电话和传真",
+        "details": ["+86 21 5888 9999", "+86 21 5888 9998 (传真)"]
+      },
+      "email": {
+        "title": "邮箱",
+        "details": ["YYservice@yymarines.com", "service@yymarines.com"]
+      },
+      "hours": {
+        "title": "营业时间",
+        "details": ["周一至周五：上午8:00 - 下午6:00", "紧急服务：24/7"]
+      }
+    },
+    "form": {
+      "name": "姓名",
+      "email": "邮箱地址",
+      "vessel": "船舶类型",
+      "vesselPlaceholder": "选择船舶类型",
+      "vesselOptions": {
+        "luxuryYacht": "豪华游艇",
+        "cruiseShip": "邮轮",
+        "megayacht": "超级游艇",
+        "other": "其他"
+      },
+      "service": "所需服务",
+      "servicePlaceholder": "选择服务",
+      "serviceOptions": {
+        "maintenance": "常规维护",
+        "repair": "紧急维修",
+        "refurbishment": "内部翻新",
+        "upgrade": "系统升级",
+        "other": "其他"
+      },
+      "message": "留言",
+      "submit": "发送消息",
+      "success": "感谢您的咨询。我们将尽快与您联系。"
+    }
+  },
+  "stats": {
+    "vessels": "豪华船舶服务",
+    "satisfaction": "客户满意度",
+    "support": "紧急支持",
+    "cruiseLines": "主要邮轮公司服务"
+  },
+  "featured": {
+    "title": "爱达魔都号服务商",
+    "description1": "易洋海洋服务很荣幸为中国首艘国产大型邮轮爱达魔都号提供全面的维护和维修服务。",
+    "description2": "我们的团队提供了卓越的机械系统升级和内部精装修，确保这一工程奇迹以最佳性能运行，为乘客提供无与伦比的奢华体验。",
+    "cta": "查看更多案例"
+  },
+  "footer": {
+    "companyName": "易洋海洋服务",
+    "description": "为豪华邮轮和游艇提供世界级的维护和维修服务，专门服务于亚洲市场。",
+    "quickLinks": "快速链接",
+    "ourServices": "我们的服务",
+    "serviceLocations": "服务地点",
+    "locations": {
+      "shanghai": "上海总部",
+      "hongkong": "香港",
+      "singapore": "新加坡",
+      "busan": "韩国釜山",
+      "yokohama": "日本横滨"
+    },
+    "copyright": "© 2023 易洋海洋服务。保留所有权利。| 豪华船舶维护专家"
+  }
+}

@@ -1,0 +1,63 @@
+/* 统计数据样式 */
+.stats {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  text-align: center;
+  padding: 100px 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.statItem {
+  text-align: center;
+  min-height: var(--stat-card-min-height-mobile);
+  display: var(--card-display);
+  flex-direction: var(--card-flex-direction);
+  justify-content: center;
+  
+  @media (min-width: 768px) {
+    min-height: var(--stat-card-min-height-tablet);
+  }
+  
+  @media (min-width: 1024px) {
+    min-height: var(--stat-card-min-height-desktop);
+  }
+}
+
+.statValue {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  
+  @media (min-width: 1024px) {
+    font-size: 3.75rem;
+  }
+}
+
+.statLabel {
+  font-size: 1.125rem;
+  opacity: 0.9;
+  
+  @media (min-width: 1024px) {
+    font-size: 1.25rem;
+  }
+}

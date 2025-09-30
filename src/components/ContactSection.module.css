@@ -1,0 +1,155 @@
+/* 联系我们样式 */
+.contact {
+  background-color: #f0f2f5;
+  padding: 100px 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.sectionTitle {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    width: 70px;
+    height: 3px;
+    background: var(--secondary);
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  @media (min-width: 1024px) {
+    font-size: 3rem;
+  }
+}
+
+.subtitle {
+  color: var(--text-light);
+  max-width: 700px;
+  margin: 20px auto 0;
+  font-size: 18px;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 60px;
+  
+  @media (min-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.contactIcon {
+  width: 3rem;
+  height: 3rem;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    transform: scale(1.1) rotate(5deg);
+  }
+}
+
+.contactDetails {
+  flex: 1;
+}
+
+.contactTitle {
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.contactText {
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+.contactForm {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formLabel {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.formControl {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: all 0.3s;
+  
+  &:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(10, 36, 99, 0.1);
+  }
+}
+
+.submitButton {
+  width: 100%;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  padding: 14px 32px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(10, 36, 99, 0.2);
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(10, 36, 99, 0.3);
+  }
+}

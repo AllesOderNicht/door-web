@@ -1,0 +1,119 @@
+/* 特色案例样式 */
+.featuredCase {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  padding: 80px 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 60px;
+  align-items: center;
+  
+  @media (min-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  
+  @media (min-width: 1024px) {
+    font-size: 3rem;
+  }
+}
+
+.description {
+  font-size: 1.125rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+  line-height: 1.6;
+  
+  &:last-of-type {
+    margin-bottom: 2rem;
+  }
+}
+
+.button {
+  background: white;
+  color: var(--primary);
+  padding: 14px 32px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(10, 36, 99, 0.2);
+  display: inline-block;
+  text-align: center;
+  
+  &:hover {
+    background: var(--secondary);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(10, 36, 99, 0.3);
+  }
+}
+
+.imageContent {
+  position: relative;
+}
+
+.imageContainer {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.image {
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  background-image: url('https://images.unsplash.com/photo-1518365050014-70fe7232897f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+  
+  @media (min-width: 1024px) {
+    height: 400px;
+  }
+}
+
+.hoverOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  
+  .imageContainer:hover & {
+    opacity: 1;
+  }
+}
+
+.decorativeBorder {
+  position: absolute;
+  inset: 0;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+}

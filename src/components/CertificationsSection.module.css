@@ -1,0 +1,130 @@
+/* 资质证书样式 */
+.certifications {
+  background-color: #f0f2f5;
+  padding: 100px 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.sectionTitle {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    width: 70px;
+    height: 3px;
+    background: var(--secondary);
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  @media (min-width: 1024px) {
+    font-size: 3rem;
+  }
+}
+
+.subtitle {
+  color: var(--text-light);
+  max-width: 700px;
+  margin: 20px auto 0;
+  font-size: 18px;
+}
+
+.certGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.certCard {
+  background-color: white;
+  border-radius: var(--card-border-radius);
+  padding: var(--card-padding);
+  text-align: center;
+  box-shadow: var(--card-box-shadow);
+  transition: var(--card-transition);
+  cursor: pointer;
+  min-height: var(--card-min-height-mobile);
+  display: var(--card-display);
+  flex-direction: var(--card-flex-direction);
+  justify-content: var(--card-justify-content);
+  
+  @media (min-width: 768px) {
+    min-height: var(--card-min-height-tablet);
+  }
+  
+  @media (min-width: 1024px) {
+    min-height: var(--card-min-height-desktop);
+  }
+  
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--card-box-shadow-hover);
+  }
+}
+
+.certIcon {
+  font-size: 60px;
+  color: var(--primary);
+  margin-bottom: 25px;
+  transition: all 0.2s ease;
+  
+  .certCard:hover & {
+    transform: scale(1.1) rotate(5deg);
+  }
+}
+
+.cardTitle {
+  margin-bottom: 15px;
+  color: var(--primary);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.cardDescription {
+  color: var(--text-light);
+  line-height: 1.6;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3; /* 标准属性，提高兼容性 */
+  min-height: 4.8em; /* 3行 * 1.6行高 = 4.8em */
+}
+
+.hoverOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(10, 36, 99, 0.05), rgba(193, 154, 107, 0.05));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 10px;
+  
+  .certCard:hover & {
+    opacity: 1;
+  }
+}

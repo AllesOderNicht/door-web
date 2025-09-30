@@ -1,0 +1,173 @@
+/* 语言切换器基础样式 */
+.languageSwitcher {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--primary);
+
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 1000;
+}
+
+.languageSwitcher:hover {
+  background: var(--primary);
+
+  transform: translateY(-1px);
+}
+
+/* 切换模式样式 */
+.toggle {
+  min-width: 44px;
+  justify-content: center;
+}
+
+.globeIcon {
+  font-size: 16px;
+  opacity: 0.9;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+/* 在浅色背景上的样式 */
+.languageSwitcher.light {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.languageSwitcher.light:hover {
+  background: rgba(0, 0, 0, 0.8);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.languageSwitcher.light .globeIcon {
+  color: white;
+  opacity: 0.9;
+}
+
+.flag {
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* 下拉模式样式 */
+.dropdown {
+  min-width: 120px;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+
+.languageName {
+  flex: 1;
+  text-align: left;
+  font-size: 14px;
+}
+
+.chevron {
+  font-size: 12px;
+  opacity: 0.7;
+  transition: transform 0.2s ease;
+}
+
+/* 下拉菜单样式 */
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(20px);
+  overflow: hidden;
+  margin-top: 4px;
+  z-index: 1001;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 16px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.dropdownItem:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dropdownItem.active {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.dropdownItem.active:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .languageSwitcher {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+  
+  .dropdown {
+    min-width: 100px;
+  }
+  
+  .languageName {
+    font-size: 13px;
+  }
+  
+  .dropdownItem {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+}
+
+/* 暗色主题适配 */
+@media (prefers-color-scheme: dark) {
+  .dropdownMenu {
+    background: rgba(30, 30, 30, 0.95);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .dropdownItem {
+    color: #fff;
+  }
+  
+  .dropdownItem:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "cases": "Cases",
+    "projects": "Complex Projects",
+    "certifications": "Certifications",
+    "about": "About Us",
+    "contact": "Contact Us"
+  },
+  "hero": {
+    "title": "Luxury Cruise Ships & Yachts",
+    "subtitle": "Professional Services",
+    "description": "Providing world-class maintenance, repair and refurbishment services for the most prestigious vessels",
+    "cta": "Schedule Consultation"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive solutions tailored for luxury cruise ships and yachts",
+    "mechanical": {
+      "title": "Mechanical Systems",
+      "description": "Comprehensive overhaul and maintenance of propulsion, steering and auxiliary systems."
+    },
+    "electrical": {
+      "title": "Electrical & AV Systems",
+      "description": "State-of-the-art electrical systems, entertainment and navigation technology."
+    },
+    "interior": {
+      "title": "Interior Refurbishment",
+      "description": "Luxury interior upgrades, furniture restoration and premium finishes."
+    },
+    "exterior": {
+      "title": "Exterior Painting & Finishing",
+      "description": "Specialized coatings and finishes designed for harsh marine environments."
+    },
+    "safety": {
+      "title": "Safety & Compliance",
+      "description": "Comprehensive safety system upgrades, compliant with international maritime regulations."
+    },
+    "luxury": {
+      "title": "Luxury Facilities",
+      "description": "Installation and maintenance of high-end facilities and guest amenities."
+    }
+  },
+  "about": {
+    "title": "About Yiyang Marine Service",
+    "subtitle": "Professional Marine Engineering Team",
+    "description": "With years of marine engineering experience, we are committed to providing the highest quality services to our clients",
+    "content": {
+      "paragraph1": "Yiyang Marine Service has quickly established itself as a leading provider of maintenance and repair services for luxury cruise ships and superyachts, with a special focus on the Asian market.",
+      "paragraph2": "Our team of certified marine engineers, technicians and craftsmen is committed to maintaining the highest standards of quality and precision, ensuring that every vessel we service maintains its value, safety and luxury appeal.",
+      "paragraph3": "We are particularly proud of our work on China's first domestically built large cruise ship, the Adora Magic City, where we provided exceptional mechanical system upgrades and luxury interior refurbishment."
+    },
+    "features": {
+      "quality": {
+        "title": "Excellence in Quality",
+        "description": "Committed to the highest standards of marine service quality"
+      },
+      "asia": {
+        "title": "Asia Specialization",
+        "description": "Deep expertise in serving the growing Asian cruise market"
+      },
+      "team": {
+        "title": "Expert Team",
+        "description": "Professional technicians with extensive luxury vessel experience"
+      }
+    },
+    "cta": "Learn More About Us"
+  },
+  "cases": {
+    "title": "Case Studies",
+    "subtitle": "Recent projects showcasing our expertise in luxury vessel maintenance",
+    "adaMagic": {
+      "title": "Adora Magic City Refurbishment",
+      "description": "Comprehensive mechanical system upgrades and luxury interior refurbishment for China's first domestically built large cruise ship."
+    },
+    "adaMediterranean": {
+      "title": "Adora Mediterranean Upgrade",
+      "description": "Complete electrical system modernization and luxury facility enhancements for this luxury cruise ship."
+    },
+    "viewDetails": "View Details",
+    "learnMore": "Learn More"
+  },
+  "projects": {
+    "title": "Complex Projects",
+    "subtitle": "Challenging engineering projects showcasing our technical capabilities",
+    "emergency": {
+      "title": "Emergency Propulsion System Repair",
+      "difficulty": "High Difficulty",
+      "description": "72-hour emergency repair of damaged propulsion system during luxury cruise ship operation, requiring precision engineering under challenging conditions."
+    },
+    "hull": {
+      "title": "Hull Structure Reinforcement",
+      "difficulty": "Extreme Difficulty",
+      "description": "Complex structural reinforcement of cruise ship hull damaged by collision, requiring innovative engineering solutions to maintain vessel integrity."
+    },
+    "control": {
+      "title": "Integrated Control Systems",
+      "difficulty": "Advanced Technology",
+      "description": "Design and implementation of fully integrated vessel control systems, combining navigation, propulsion and hotel management into a single platform."
+    }
+  },
+  "certifications": {
+    "title": "Certifications",
+    "subtitle": "Our certifications and qualifications demonstrate our commitment to quality and safety",
+    "iso9001": {
+      "title": "ISO 9001:2015",
+      "description": "Quality management system certification for marine repair and maintenance services."
+    },
+    "iso14001": {
+      "title": "ISO 14001:2015",
+      "description": "Environmental management system certification for sustainable marine operations."
+    },
+    "classnk": {
+      "title": "ClassNK Certification",
+      "description": "Official certification from the Japanese Maritime Association for ship repair and maintenance services."
+    },
+    "abs": {
+      "title": "ABS Certification",
+      "description": "American Bureau of Shipping certification for marine vessel repair and inspection services."
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Get in touch with our team to discuss your vessel's needs",
+    "info": {
+      "headquarters": {
+        "title": "Our Headquarters",
+        "details": ["Yiyang Marine Service Center", "Port Road, Shanghai 200000"]
+      },
+      "phone": {
+        "title": "Phone & Fax",
+        "details": ["+86 21 5888 9999", "+86 21 5888 9998 (Fax)"]
+      },
+      "email": {
+        "title": "Email",
+        "details": ["YYservice@yymarines.com", "service@yymarines.com"]
+      },
+      "hours": {
+        "title": "Business Hours",
+        "details": ["Monday-Friday: 8:00 AM - 6:00 PM", "Emergency Service: 24/7"]
+      }
+    },
+    "form": {
+      "name": "Name",
+      "email": "Email Address",
+      "vessel": "Vessel Type",
+      "vesselPlaceholder": "Select Vessel Type",
+      "vesselOptions": {
+        "luxuryYacht": "Luxury Yacht",
+        "cruiseShip": "Cruise Ship",
+        "megayacht": "Megayacht",
+        "other": "Other"
+      },
+      "service": "Required Service",
+      "servicePlaceholder": "Select Service",
+      "serviceOptions": {
+        "maintenance": "Regular Maintenance",
+        "repair": "Emergency Repair",
+        "refurbishment": "Interior Refurbishment",
+        "upgrade": "System Upgrade",
+        "other": "Other"
+      },
+      "message": "Message",
+      "submit": "Send Message",
+      "success": "Thank you for your inquiry. We will contact you soon."
+    }
+  },
+  "stats": {
+    "vessels": "Luxury Vessels Served",
+    "satisfaction": "Customer Satisfaction",
+    "support": "Emergency Support",
+    "cruiseLines": "Major Cruise Lines Served"
+  },
+  "featured": {
+    "title": "Adora Magic City Service Provider",
+    "description1": "Yiyang Marine Service is honored to provide comprehensive maintenance and repair services for China's first domestically built large cruise ship, the Adora Magic City.",
+    "description2": "Our team delivered exceptional mechanical system upgrades and luxury interior refurbishment, ensuring this engineering marvel operates at peak performance, providing passengers with an unparalleled luxury experience.",
+    "cta": "View More Cases"
+  },
+  "footer": {
+    "companyName": "Yiyang Marine Service",
+    "description": "Providing world-class maintenance and repair services for luxury cruise ships and yachts, specializing in the Asian market.",
+    "quickLinks": "Quick Links",
+    "ourServices": "Our Services",
+    "serviceLocations": "Service Locations",
+    "locations": {
+      "shanghai": "Shanghai Headquarters",
+      "hongkong": "Hong Kong",
+      "singapore": "Singapore",
+      "busan": "Busan, Korea",
+      "yokohama": "Yokohama, Japan"
+    },
+    "copyright": "© 2023 Yiyang Marine Service. All rights reserved. | Luxury Vessel Maintenance Specialists"
+  }
+}
