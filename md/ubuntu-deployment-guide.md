@@ -5,9 +5,8 @@
 本指南将帮助您将Next.js门户网站部署到Ubuntu 22.04服务器上，包括：
 
 - 服务器基础环境配置
-- Node.js和pnpm安装
+- nvm和Node.js安装
 - Nginx反向代理配置
-- SSL证书配置
 - PM2进程管理
 - 自动化部署脚本
 - 安全配置和监控
@@ -26,14 +25,6 @@ sudo apt install -y curl wget git vim ufw fail2ban htop
 
 ### 1.2 创建部署用户
 
-```bash
-# 创建专用部署用户
-sudo adduser deploy
-sudo usermod -aG sudo deploy
-
-# 切换到部署用户
-su - deploy
-```
 
 ### 1.3 配置SSH密钥（推荐）
 
@@ -45,24 +36,40 @@ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ssh-copy-id deploy@your_server_ip
 ```
 
-## 🔧 第二步：安装Node.js和pnpm
+## 🔧 第二步：安装nvm和Node.js
 
-### 2.1 安装Node.js 20 LTS
+### 2.1 安装nvm (Node Version Manager)
 
 ```bash
-# 使用NodeSource仓库安装Node.js 20
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-sudo apt-get install -y nodejs
+# 安装nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+
+# 重新加载bash配置
+source ~/.bashrc
+
+# 验证nvm安装
+nvm --version
+```
+
+### 2.2 安装Node.js 20 LTS
+
+```bash
+# 安装Node.js 20 LTS
+nvm install 20
+
+# 设置Node.js 20为默认版本
+nvm use 20
+nvm alias default 20
 
 # 验证安装
 node --version
 npm --version
 ```
 
-### 2.2 安装pnpm
+### 2.3 安装pnpm
 
 ```bash
-# 安装pnpm
+# 使用npm安装pnpm
 npm install -g pnpm
 
 # 验证安装
@@ -96,23 +103,7 @@ sudo vim /etc/nginx/sites-available/door-web
 ```nginx
 server {
     listen 80;
-    server_name your_domain.com www.your_domain.com;
-
-    # 重定向到HTTPS
-    return 301 https://$server_name$request_uri;
-}
-
-server {
-    listen 443 ssl http2;
-    server_name your_domain.com www.your_domain.com;
-
-    # SSL配置（稍后配置）
-    # ssl_certificate /etc/letsencrypt/live/your_domain.com/fullchain.pem;
-    # ssl_certificate_key /etc/letsencrypt/live/your_domain.com/privkey.pem;
-
-    # 临时SSL配置（用于Let's Encrypt验证）
-    ssl_certificate /etc/ssl/certs/ssl-cert-snakeoil.pem;
-    ssl_certificate_key /etc/ssl/private/ssl-cert-snakeoil.key;
+    server_name _;
 
     # 安全头
     add_header X-Frame-Options "SAMEORIGIN" always;
@@ -168,29 +159,9 @@ sudo nginx -t
 sudo systemctl restart nginx
 ```
 
-## 🔒 第四步：配置SSL证书
+## ⚙️ 第四步：安装和配置PM2
 
-### 4.1 安装Certbot
-
-```bash
-sudo apt install -y certbot python3-certbot-nginx
-```
-
-### 4.2 获取SSL证书
-
-```bash
-# 获取证书（替换为您的域名）
-sudo certbot --nginx -d your_domain.com -d www.your_domain.com
-
-# 设置自动续期
-sudo crontab -e
-# 添加以下行：
-# 0 12 * * * /usr/bin/certbot renew --quiet
-```
-
-## ⚙️ 第五步：安装和配置PM2
-
-### 5.1 安装PM2
+### 4.1 安装PM2
 
 ```bash
 # 全局安装PM2
@@ -201,7 +172,7 @@ pm2 startup
 sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u deploy --hp /home/deploy
 ```
 
-### 5.2 创建PM2配置文件
+### 4.2 创建PM2配置文件
 
 ```bash
 # 在项目目录创建ecosystem.config.js
@@ -233,9 +204,9 @@ module.exports = {
 };
 ```
 
-## 🚀 第六步：部署应用
+## 🚀 第五步：部署应用
 
-### 6.1 创建部署目录
+### 5.1 创建部署目录
 
 ```bash
 # 创建项目目录
@@ -247,7 +218,7 @@ sudo chown -R deploy:deploy /home/deploy/door_web
 sudo chown -R deploy:deploy /home/deploy/logs
 ```
 
-### 6.2 克隆项目
+### 5.2 克隆项目
 
 ```bash
 cd /home/deploy
@@ -255,7 +226,7 @@ git clone https://github.com/your-username/door_web.git
 cd door_web
 ```
 
-### 6.3 安装依赖和构建
+### 5.3 安装依赖和构建
 
 ```bash
 # 安装依赖
@@ -271,9 +242,9 @@ pm2 start ecosystem.config.js
 pm2 save
 ```
 
-## 🔥 第七步：配置防火墙
+## 🔥 第六步：配置防火墙
 
-### 7.1 配置UFW防火墙
+### 6.1 配置UFW防火墙
 
 ```bash
 # 启用防火墙
@@ -282,15 +253,14 @@ sudo ufw enable
 # 允许SSH
 sudo ufw allow ssh
 
-# 允许HTTP和HTTPS
+# 允许HTTP
 sudo ufw allow 80
-sudo ufw allow 443
 
 # 检查状态
 sudo ufw status
 ```
 
-### 7.2 配置Fail2ban
+### 6.2 配置Fail2ban
 
 ```bash
 # 配置SSH保护
@@ -317,9 +287,9 @@ maxretry = 3
 sudo systemctl restart fail2ban
 ```
 
-## 📊 第八步：监控和日志
+## 📊 第七步：监控和日志
 
-### 8.1 设置日志轮转
+### 7.1 设置日志轮转
 
 ```bash
 sudo vim /etc/logrotate.d/door-web
@@ -342,7 +312,7 @@ sudo vim /etc/logrotate.d/door-web
 }
 ```
 
-### 8.2 设置系统监控
+### 7.2 设置系统监控
 
 ```bash
 # 安装htop用于监控
@@ -382,9 +352,9 @@ tail -10 /home/deploy/logs/combined.log
 chmod +x /home/deploy/monitor.sh
 ```
 
-## 🔄 第九步：自动化部署脚本
+## 🔄 第八步：自动化部署脚本
 
-### 9.1 创建部署脚本
+### 8.1 创建部署脚本
 
 ```bash
 vim /home/deploy/deploy.sh
@@ -443,7 +413,7 @@ echo "🎉 部署完成！"
 chmod +x /home/deploy/deploy.sh
 ```
 
-### 9.2 设置Git钩子（可选）
+### 8.2 设置Git钩子（可选）
 
 ```bash
 # 在服务器上创建Git仓库（如果需要）
@@ -468,9 +438,9 @@ git --git-dir=/home/deploy/door_web.git --work-tree=/home/deploy/door_web pull o
 chmod +x door_web.git/hooks/post-receive
 ```
 
-## 🛠️ 第十步：性能优化
+## 🛠️ 第九步：性能优化
 
-### 10.1 优化Nginx配置
+### 9.1 优化Nginx配置
 
 ```bash
 sudo vim /etc/nginx/nginx.conf
@@ -504,7 +474,7 @@ gzip_types
     image/svg+xml;
 ```
 
-### 10.2 优化Node.js应用
+### 9.2 优化Node.js应用
 
 在`next.config.ts`中添加：
 
@@ -556,13 +526,13 @@ export default nextConfig;
    pm2 status
    ```
 
-3. **SSL证书问题**
+3. **端口占用问题**
    ```bash
-   # 检查证书状态
-   sudo certbot certificates
+   # 检查端口占用
+   sudo netstat -tlnp | grep :80
    
-   # 手动续期
-   sudo certbot renew --dry-run
+   # 检查Nginx状态
+   sudo systemctl status nginx
    ```
 
 ## 📈 监控和维护
@@ -592,9 +562,8 @@ export default nextConfig;
 ## 🎯 部署检查清单
 
 - [ ] 服务器基础环境配置完成
-- [ ] Node.js和pnpm安装完成
+- [ ] nvm和Node.js安装完成
 - [ ] Nginx配置并启动
-- [ ] SSL证书配置完成
 - [ ] PM2安装并配置
 - [ ] 应用成功部署并运行
 - [ ] 防火墙配置完成
@@ -613,4 +582,4 @@ export default nextConfig;
 
 ---
 
-**部署完成后，您的Next.js门户网站将在 `https://your_domain.com` 上运行！** 🎉
+**部署完成后，您的Next.js门户网站将在 `http://47.84.129.58` 上运行！** 🎉
