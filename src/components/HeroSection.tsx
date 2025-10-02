@@ -1,7 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ParallaxBanner } from '@/components/ParallaxBanner'
+import { AuroraBackground } from '@/components/AuroraBackground'
+import { AuroraGradientAnimated } from '@/components/AuroraGradientAnimated'
 import { useI18n } from '@/hooks/useI18n'
 import styles from './HeroSection.module.css'
 
@@ -25,17 +26,14 @@ export const HeroSection = () => {
 
   return (
     <section id="home" className={styles.hero}>
-      {/* 视差背景 */}
-      <ParallaxBanner
-        imageUrl="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
-        className={styles.parallaxBackground}
-      />
+      {/* 极光背景 */}
+      <AuroraBackground />
+      
+      {/* 动态极光渐变背景 */}
+      <AuroraGradientAnimated />
       
       {/* 渐变遮罩 */}
       <div className={styles.gradientOverlay} />
-      
-      {/* 动态背景效果 */}
-      <div className={styles.dynamicBackground} />
 
       <div className={styles.container}>
         <motion.div

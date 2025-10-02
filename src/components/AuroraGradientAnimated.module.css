@@ -1,0 +1,190 @@
+/* 极光渐变动画容器 */
+.auroraGradientContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* 极光叠加层 */
+.auroraOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(19, 255, 170, 0.1) 0%,
+    rgba(30, 103, 198, 0.15) 25%,
+    rgba(206, 132, 207, 0.1) 50%,
+    rgba(221, 51, 92, 0.15) 75%,
+    rgba(0, 212, 255, 0.1) 100%
+  );
+  animation: auroraOverlayShift 10s ease-in-out infinite;
+  z-index: 2;
+}
+
+/* 动态光晕效果 */
+.auroraGlow {
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 140%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(19, 255, 170, 0.2) 0%,
+    rgba(30, 103, 198, 0.15) 30%,
+    rgba(206, 132, 207, 0.1) 60%,
+    transparent 100%
+  );
+  z-index: 3;
+}
+
+/* 流动光带效果 */
+.auroraStream {
+  position: absolute;
+  top: 30%;
+  left: 0;
+  width: 200%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(19, 255, 170, 0.8) 20%,
+    rgba(30, 103, 198, 0.9) 50%,
+    rgba(206, 132, 207, 0.8) 80%,
+    transparent 100%
+  );
+  z-index: 4;
+  filter: blur(1px);
+}
+
+/* 极光叠加层动画 */
+@keyframes auroraOverlayShift {
+  0%, 100% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+    opacity: 0.8;
+  }
+  25% {
+    transform: translateX(-15px) translateY(-8px) rotate(1.5deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(10px) translateY(-15px) rotate(-1deg);
+    opacity: 0.9;
+  }
+  75% {
+    transform: translateX(-8px) translateY(10px) rotate(0.8deg);
+    opacity: 1;
+  }
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+  .auroraGradientContainer {
+    /* 移动端减少动画复杂度 */
+  }
+  
+  .auroraOverlay {
+    /* 移动端简化渐变效果 */
+    background: linear-gradient(
+      135deg,
+      rgba(19, 255, 170, 0.08) 0%,
+      rgba(30, 103, 198, 0.12) 50%,
+      rgba(206, 132, 207, 0.08) 100%
+    );
+    animation-duration: 8s;
+  }
+  
+  .auroraGlow {
+    /* 移动端简化光晕效果 */
+    background: radial-gradient(
+      ellipse at center,
+      rgba(19, 255, 170, 0.15) 0%,
+      rgba(30, 103, 198, 0.1) 40%,
+      transparent 70%
+    );
+  }
+  
+  .auroraStream {
+    /* 移动端简化光带效果 */
+    height: 1px;
+    top: 40%;
+  }
+}
+
+/* 超小屏幕优化 */
+@media (max-width: 480px) {
+  .auroraOverlay {
+    animation-duration: 6s;
+  }
+  
+  .auroraGlow {
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+  }
+  
+  .auroraStream {
+    display: none; /* 超小屏幕隐藏光带效果以提升性能 */
+  }
+}
+
+/* 高分辨率屏幕优化 */
+@media (min-width: 1920px) {
+  .auroraOverlay {
+    background: linear-gradient(
+      135deg,
+      rgba(19, 255, 170, 0.12) 0%,
+      rgba(30, 103, 198, 0.18) 25%,
+      rgba(206, 132, 207, 0.12) 50%,
+      rgba(221, 51, 92, 0.18) 75%,
+      rgba(0, 212, 255, 0.12) 100%
+    );
+  }
+  
+  .auroraGlow {
+    background: radial-gradient(
+      ellipse at center,
+      rgba(19, 255, 170, 0.25) 0%,
+      rgba(30, 103, 198, 0.2) 30%,
+      rgba(206, 132, 207, 0.15) 60%,
+      transparent 100%
+    );
+  }
+}
+
+/* 性能优化 - 减少动画在低性能设备上的复杂度 */
+@media (prefers-reduced-motion: reduce) {
+  .auroraOverlay {
+    animation: none;
+  }
+  
+  .auroraGlow {
+    animation: none;
+  }
+  
+  .auroraStream {
+    animation: none;
+  }
+}
+
+/* 暗色模式优化 */
+@media (prefers-color-scheme: dark) {
+  .auroraOverlay {
+    background: linear-gradient(
+      135deg,
+      rgba(19, 255, 170, 0.15) 0%,
+      rgba(30, 103, 198, 0.2) 25%,
+      rgba(206, 132, 207, 0.15) 50%,
+      rgba(221, 51, 92, 0.2) 75%,
+      rgba(0, 212, 255, 0.15) 100%
+    );
+  }
+}

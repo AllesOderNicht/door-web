@@ -60,18 +60,6 @@ export const ComplexProjectsSection = () => {
     }
   }
 
-  const getDifficultyColor = (difficulty: string) => {
-    switch (difficulty) {
-      case t('projects.emergency.difficulty'):
-        return 'bg-orange-500'
-      case t('projects.hull.difficulty'):
-        return 'bg-red-500'
-      case t('projects.control.difficulty'):
-        return 'bg-blue-500'
-      default:
-        return 'bg-secondary'
-    }
-  }
 
   return (
     <section id="projects" className={styles.complexProjects}>

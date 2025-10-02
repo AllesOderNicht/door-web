@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShip, faBars } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
 import { useI18n } from '@/hooks/useI18n'
+import { useScrollVisibility } from '@/hooks/useScrollVisibility'
 import { LanguageSwitcher } from './LanguageSwitcher'
 import styles from './Header.module.css'
 
@@ -15,6 +16,7 @@ import styles from './Header.module.css'
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const isVisible = useScrollVisibility(100) // 滚动超过100px时显示
   const { t } = useI18n()
 
   const navItems = [
@@ -50,10 +52,17 @@ export const Header = () => {
 
   return (
     <motion.header
-      className={`${styles.header} ${isScrolled ? styles.scrolled : styles.normal}`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+      className={`${styles.header} ${isScrolled ? styles.scrolled : styles.normal} ${isVisible ? styles.fadeIn : styles.hidden}`}
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ 
+        y: isVisible ? 0 : -100, 
+        opacity: isVisible ? 1 : 0 
+      }}
+      transition={{ 
+        duration: 0.5, 
+        ease: [0.25, 0.46, 0.45, 0.94], // 自定义贝塞尔曲线，更自然的动画
+        opacity: { duration: 0.3 }
+      }}
     >
       <div className={styles.container}>
         <nav className={styles.nav}>
@@ -67,7 +76,7 @@ export const Header = () => {
               icon={faShip} 
               className={styles.logoIcon}
             />
-            <div className={styles.logoText}>
+            <div className={`${styles.logoText} ${styles.desktopOnly}`}>
               Yiyang<span className={styles.accent}>Marine</span>Service
             </div>
           </motion.div>

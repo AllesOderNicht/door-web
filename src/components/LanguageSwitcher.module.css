@@ -30,16 +30,16 @@
 }
 
 .globeIcon {
-  font-size: 16px;
-  opacity: 0.9;
+  cursor: pointer;
+  font-size: 20px;
+  opacity: 0.8;
   display: flex;
   align-items: center;
-  color: white;
 }
 
 /* 在浅色背景上的样式 */
 .languageSwitcher.light {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: white;
 }

@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { TranslationOutlined } from '@ant-design/icons'
 import { useI18n } from '@/hooks/useI18n'
-import { SUPPORTED_LANGUAGES, getLanguageName, getLanguageFlag, getNextLanguage } from '@/utils/i18n'
+import { SUPPORTED_LANGUAGES, getLanguageName, getNextLanguage } from '@/utils/i18n'
 import styles from './LanguageSwitcher.module.css'
 
 /**
@@ -101,14 +101,14 @@ export const LanguageSwitcher = ({
   }
 
   return (
-    <motion.button
-      className={`${styles.languageSwitcher} ${styles.toggle} ${light ? styles.light : ''} ${className}`}
+    <div
+    style={{
+      marginLeft: '16px',
+    }}
       onClick={handleToggleLanguage}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
       title={`切换到 ${getLanguageName(nextLang)}`}
     >
       <TranslationOutlined className={styles.globeIcon} />
-    </motion.button>
+    </div>
   )
 }

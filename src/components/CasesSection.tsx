@@ -81,7 +81,7 @@ export const CasesSection = () => {
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
         >
-          {cases.map((caseItem, index) => (
+          {cases.map((caseItem) => (
             <motion.div
               key={caseItem.id}
               variants={itemVariants}
