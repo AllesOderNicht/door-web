@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useI18n } from '@/hooks/useI18n'
 import styles from './StatsSection.module.css'
 
@@ -24,7 +24,7 @@ export const StatsSection = () => {
     cruiseLines: 0
   })
 
-  const stats = [
+  const stats = useMemo(() => [
     {
       value: 50,
       suffix: '+',
@@ -49,7 +49,7 @@ export const StatsSection = () => {
       label: t('stats.cruiseLines'),
       key: 'cruiseLines'
     }
-  ]
+  ], [t])
 
   useEffect(() => {
     if (inView) {
@@ -57,7 +57,7 @@ export const StatsSection = () => {
       const steps = 60 // 60步
       const stepDuration = duration / steps
 
-      stats.forEach((stat, index) => {
+      stats.forEach((stat) => {
         const targetValue = stat.value
         const increment = targetValue / steps
         let currentValue = 0
@@ -76,7 +76,7 @@ export const StatsSection = () => {
         }, stepDuration)
       })
     }
-  }, [inView])
+  }, [inView, stats])
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -113,19 +113,33 @@ export const StatsSection = () => {
             <motion.div
               key={index}
               variants={itemVariants}
-              className={styles.statItem}
+              className="group"
             >
               <motion.div
-                className={styles.statValue}
+                className={styles.statItem}
                 initial={{ scale: 0 }}
                 animate={inView ? { scale: 1 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                {counts[stat.key as keyof typeof counts]}{stat.suffix}
+                <motion.div
+                  className="h-full flex flex-col items-center justify-center"
+                  initial={{ scale: 0 }}
+                  animate={inView ? { scale: 1 } : {}}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <motion.div
+                    className={styles.statValue}
+                    initial={{ scale: 0 }}
+                    animate={inView ? { scale: 1 } : {}}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  >
+                    {counts[stat.key as keyof typeof counts]}{stat.suffix}
+                  </motion.div>
+                  <div className={styles.statLabel}>
+                    {stat.label}
+                  </div>
+                </motion.div>
               </motion.div>
-              <div className={styles.statLabel}>
-                {stat.label}
-              </div>
             </motion.div>
           ))}
         </motion.div>

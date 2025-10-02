@@ -82,6 +82,7 @@
   }
   
   &:hover {
+    border-radius: 8px;
     transform: translateY(-10px);
     box-shadow: var(--card-box-shadow-hover);
   }

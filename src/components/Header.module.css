@@ -1,42 +1,46 @@
-/* 导航栏样式 */
+/* 导航栏样式 - 苹果风格 */
 .header {
   position: fixed;
   width: 100%;
   z-index: 50;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   
   &.scrolled {
-    background-color: rgba(255, 255, 255, 0.98);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 5px 0;
+    background-color: rgba(250, 253, 255, 0.8);
+    box-shadow: 0 8px 32px rgba(0, 113, 227, 0.1);
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(229, 234, 240, 0.5);
   }
   
   &.normal {
-    background-color: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-    padding: 20px 0;
+    background-color: rgba(250, 253, 255, 0.6);
+    box-shadow: 0 4px 24px rgba(0, 113, 227, 0.08);
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(229, 234, 240, 0.3);
   }
 }
 
 .container {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
 }
 
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .logo {
   display: flex;
   align-items: center;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   
   &:hover {
     transform: scale(1.05);
@@ -44,18 +48,24 @@
 }
 
 .logoIcon {
-  font-size: 28px;
+  font-size: 32px;
   color: var(--primary);
-  margin-right: 10px;
+  margin-right: 12px;
 }
 
 .logoText {
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--primary);
+  font-size: 28px;
+  font-weight: 600;
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   
   .accent {
-    color: var(--secondary);
+    background: linear-gradient(90deg, var(--primary-light), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }
 
@@ -63,7 +73,7 @@
   cursor: pointer;
   display: flex;
   list-style: none;
-  gap: 35px;
+  gap: 40px;
   
   @media (max-width: 992px) {
     display: none;
@@ -81,24 +91,28 @@
 
 .navLink {
   text-decoration: none;
-  color: var(--dark);
+  color: var(--text);
   font-weight: 500;
-  transition: color 0.3s;
+  font-size: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+  padding: 8px 0;
   
   &::after {
     content: '';
     position: absolute;
     width: 0;
     height: 2px;
-    background: var(--secondary);
-    bottom: -5px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    bottom: 0;
     left: 0;
-    transition: width 0.3s ease;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 1px;
   }
   
   &:hover {
     color: var(--primary);
+    transform: translateY(-1px);
     
     &::after {
       width: 100%;

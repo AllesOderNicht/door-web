@@ -1,0 +1,165 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+
+一、苹果官网核心设计理念
+苹果官网的UI风格以​​极简主义​​和​​沉浸式体验​​为核心，强调内容优先、留白艺术、细腻的动效和一致的视觉层次
+。其主要特点可归纳为以下几点：
+
+1.
+​​简洁与留白​​：大量使用留白营造通透感，减少视觉噪音
+。
+
+2.
+​​层次分明的布局​​：通过分区渐变、圆角卡片和阴影增强层次感
+。
+
+3.
+​​平滑的交互与动画​​：滚动触发的视差效果、元素淡入/移动动画，以及细腻的悬停反馈
+。
+
+4.
+​​色彩与质感​​：
+
+∙
+主色调以​​高级灰白​​（如 #f5f6fa、#fafdff）为背景，搭配​​苹果蓝​​（#0071e3、#2997ff）作为点缀色
+。
+
+∙
+避免使用纯黑或纯灰，灰色中融入轻微蓝色调（如 #333调整为 #333344）以增强质感
+。
+
+5.
+​​字体规范​​：
+
+∙
+英文：SF Pro Display/Text（大标题用Display，小文本用Text）。
+
+∙
+中文：苹方（PingFang SC）
+。
+
+∙
+标题使用渐变文字效果（如 background: linear-gradient(...); -webkit-background-clip: text）
+。
+
+# 苹果风格UI实现要求
+
+## 设计目标
+- 风格：极简、明亮、通透，强调内容层次和流畅交互。
+- 技术栈：Vue3/React + CSS3（支持现代浏览器）。
+
+## 核心样式规范
+### 1. 色彩体系
+- 主背景：`linear-gradient(135deg, #fafdff 0%, #e3f0ff 100%)`
+- 卡片背景：`linear-gradient(135deg, #fff 60%, #f5f6fa 100%)`
+- 主色蓝色：`#0071e3`（深蓝）、`#2997ff`（亮蓝）
+- 辅助灰色：文字色 `#333344`（避免纯黑），边框色 `#e5eaf0`
+- 阴影：`box-shadow: 0 12px 48px 0 rgba(0,113,227,0.10)`（hover时加深至0.18透明度）
+
+### 2. 字体与排版
+- 中文字体：`PingFang SC, -apple-system, sans-serif`
+- 英文字体：`SF Pro Display, SF Pro Text, -apple-system, sans-serif`
+- 标题梯度：
+  - 主标题：34px，字重600，渐变文字（参考备注1）
+  - 副标题：22px，字重400
+- 行高基准：字号的1.2~1.5倍（如34px标题行高41px）
+
+### 3. 组件样式
+#### 卡片（Card）
+css
+
+.card {
+
+background: linear-gradient(135deg, #fff 60%, #f5f6fa 100%);
+
+border: 1.5px solid #e5eaf0;
+
+border-radius: 32px; /* 大圆角 */
+
+box-shadow: 0 12px 48px rgba(0,113,227,0.10);
+
+transition: all 0.3s cubic-bezier(.4,0,.2,1);
+
+}
+
+.card:hover {
+
+border-color: #2997ff;
+
+box-shadow: 0 24px 56px rgba(0,113,227,0.18);
+
+}
+
+#### 按钮（Button）
+css
+
+.btn-primary {
+
+background: linear-gradient(90deg, #0071e3 0%, #2997ff 100%);
+
+border: none;
+
+border-radius: 24px; /* 圆角大于常规 */
+
+color: #fff;
+
+padding: 12px 28px;
+
+transition: transform 0.2s, box-shadow 0.2s;
+
+}
+
+.btn-primary:hover {
+
+transform: scale(1.05);
+
+box-shadow: 0 8px 24px rgba(41, 151, 255, 0.4);
+
+}
+
+### 4. 动画与交互
+- **视差滚动**：使用 `IntersectionObserver` 监听元素，进入视口时添加 `is-visible` 类触发动画[1](@ref)。
+- **淡入上移动画**：
+css
+
+.fade-in-up {
+
+opacity: 0;
+
+transform: translateY(40px) scale(0.98);
+
+transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+
+}
+
+.fade-in-up.is-visible {
+
+opacity: 1;
+
+transform: translateY(0) scale(1);
+
+}
+
+- **微交互**：按钮hover轻微放大，图标悬停颜色渐变。
+
+### 5. 布局与栅格
+- 使用 **CSS Grid** 或 **Flexbox** 实现非对称栅格，突出内容重点。
+- 分区背景：不同section使用轻微渐变区分（如 `linear-gradient(90deg, #fafdff 0%, #e3f0ff 100%)`）。
+
+## 备注
+1. **渐变文字实现**：
+css
+
+.hero-title {
+
+background: linear-gradient(90deg, #0071e3, #2997ff);
+
+-webkit-background-clip: text;
+
+-webkit-text-fill-color: transparent;
+
+}
+

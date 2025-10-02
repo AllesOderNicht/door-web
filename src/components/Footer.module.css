@@ -1,15 +1,29 @@
-/* 页脚样式 */
+/* 页脚样式 - 苹果风格 */
 .footer {
-  background-color: var(--dark);
-  color: #aaa;
-  padding: 70px 0 30px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: #8e8e93;
+  padding: 80px 0 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 113, 227, 0.3), transparent);
 }
 
 .container {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
 }
 
 .footerContent {
@@ -34,19 +48,21 @@
 
 .footerTitle {
   color: white;
-  margin-bottom: 25px;
-  font-size: 20px;
+  margin-bottom: 24px;
+  font-size: 18px;
+  font-weight: 600;
   position: relative;
-  padding-bottom: 10px;
+  padding-bottom: 12px;
   
   &::after {
     content: '';
     position: absolute;
-    width: 40px;
+    width: 32px;
     height: 2px;
-    background: var(--secondary);
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
     bottom: 0;
     left: 0;
+    border-radius: 1px;
   }
 }
 
@@ -63,20 +79,23 @@
 }
 
 .socialLink {
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  transition: all 0.3s;
+  color: #8e8e93;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   
   &:hover {
-    background: var(--secondary);
-    transform: translateY(-3px);
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 24px rgba(0, 113, 227, 0.3);
   }
 }
 
@@ -92,18 +111,23 @@
 }
 
 .footerLink {
-  color: #aaa;
+  color: #8e8e93;
   text-decoration: none;
-  transition: color 0.3s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 15px;
+  line-height: 1.5;
   
   &:hover {
-    color: var(--secondary);
+    color: var(--primary-light);
+    transform: translateX(4px);
   }
 }
 
 .copyright {
   text-align: center;
-  padding-top: 30px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  color: #aaa;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: #8e8e93;
+  font-size: 14px;
+  line-height: 1.5;
 }

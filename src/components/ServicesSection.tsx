@@ -110,24 +110,29 @@ export const ServicesSection = () => {
               className="group"
             >
               <motion.div
-                className={`${styles.serviceCard} tech-border`}
+                className={styles.serviceCard}
                 whileHover={{ scale: 1.02 }}
               >
-                {/* 图标 */}
-                <div className={styles.serviceIcon}>
-                  <FontAwesomeIcon icon={service.icon} />
-                </div>
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  className="h-full flex flex-col"
+                >
+                  {/* 图标 */}
+                  <div className={styles.serviceIcon}>
+                    <FontAwesomeIcon icon={service.icon} />
+                  </div>
 
-                {/* 标题和描述 */}
-                <h3 className={styles.cardTitle}>
-                  {service.title}
-                </h3>
-                <p className={styles.cardDescription}>
-                  {service.description}
-                </p>
+                  {/* 标题和描述 */}
+                  <h3 className={styles.cardTitle}>
+                    {service.title}
+                  </h3>
+                  <p className={styles.cardDescription}>
+                    {service.description}
+                  </p>
 
-                {/* 悬停效果 */}
-                <div className={styles.hoverOverlay} />
+                  {/* 悬停效果 */}
+                  <div className={styles.hoverOverlay} />
+                </motion.div>
               </motion.div>
             </motion.div>
           ))}

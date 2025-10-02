@@ -1,29 +1,48 @@
-/* 统计数据样式 */
+/* 统计数据样式 - 苹果风格 */
 .stats {
-  background: linear-gradient(135deg, var(--primary), var(--accent));
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
   color: white;
   text-align: center;
-  padding: 100px 0;
+  padding: 120px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.stats::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+  animation: shimmer 8s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
 }
 
 .container {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
 }
 
 .statsGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 40px;
+  gap: 48px;
   
   @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
+    gap: 56px;
   }
   
   @media (min-width: 1024px) {
     grid-template-columns: repeat(4, 1fr);
+    gap: 64px;
   }
 }
 
@@ -33,6 +52,11 @@
   display: var(--card-display);
   flex-direction: var(--card-flex-direction);
   justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &:hover {
+    transform: translateY(-4px);
+  }
   
   @media (min-width: 768px) {
     min-height: var(--stat-card-min-height-tablet);
@@ -44,20 +68,27 @@
 }
 
 .statValue {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+  font-size: 48px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  background: linear-gradient(90deg, #fff, rgba(255, 255, 255, 0.8));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
   
   @media (min-width: 1024px) {
-    font-size: 3.75rem;
+    font-size: 64px;
   }
 }
 
 .statLabel {
-  font-size: 1.125rem;
+  font-size: 18px;
   opacity: 0.9;
+  font-weight: 400;
+  line-height: 1.4;
   
   @media (min-width: 1024px) {
-    font-size: 1.25rem;
+    font-size: 20px;
   }
 }

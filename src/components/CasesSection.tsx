@@ -90,46 +90,51 @@ export const CasesSection = () => {
               onMouseLeave={() => setHoveredCase(null)}
             >
               <motion.div
-                className={`${styles.caseCard} tech-border`}
+                className={styles.caseCard}
                 whileHover={{ y: -10 }}
               >
-                {/* 图片区域 */}
-                <div className={styles.caseImage} style={{ backgroundImage: `url(${caseItem.image})` }}>
-                  {/* 悬停遮罩 */}
-                  <motion.div
-                    className={styles.caseOverlay}
-                    initial={{ opacity: 0 }}
-                    animate={{ 
-                      opacity: hoveredCase === caseItem.id ? 1 : 0 
-                    }}
-                    transition={{ duration: 0.3 }}
-                  >
+                <motion.div
+                  whileHover={{ y: -10 }}
+                  className="h-full flex flex-col"
+                >
+                  {/* 图片区域 */}
+                  <div className={styles.caseImage} style={{ backgroundImage: `url(${caseItem.image})` }}>
+                    {/* 悬停遮罩 */}
+                    <motion.div
+                      className={styles.caseOverlay}
+                      initial={{ opacity: 0 }}
+                      animate={{ 
+                        opacity: hoveredCase === caseItem.id ? 1 : 0 
+                      }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <motion.button
+                        className="btn"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        {t('cases.viewDetails')}
+                      </motion.button>
+                    </motion.div>
+                  </div>
+
+                  {/* 内容区域 */}
+                  <div className={styles.caseContent}>
+                    <h3 className={styles.caseTitle}>
+                      {caseItem.title}
+                    </h3>
+                    <p className={styles.caseDescription}>
+                      {caseItem.description}
+                    </p>
                     <motion.button
-                      className="btn"
+                      className="btn btn-secondary"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      {t('cases.viewDetails')}
+                      {t('cases.learnMore')}
                     </motion.button>
-                  </motion.div>
-                </div>
-
-                {/* 内容区域 */}
-                <div className={styles.caseContent}>
-                  <h3 className={styles.caseTitle}>
-                    {caseItem.title}
-                  </h3>
-                  <p className={styles.caseDescription}>
-                    {caseItem.description}
-                  </p>
-                  <motion.button
-                    className="btn btn-secondary"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {t('cases.learnMore')}
-                  </motion.button>
-                </div>
+                  </div>
+                </motion.div>
               </motion.div>
             </motion.div>
           ))}
