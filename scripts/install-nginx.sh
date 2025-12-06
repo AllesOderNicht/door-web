@@ -14,6 +14,10 @@ UPSTREAM_HOST="localhost"
 SERVER_NAME="www.yymarines.com yymarines.com"
 PROJECT_NAME="door-web"
 PROJECT_DIR="${PROJECT_DIR:-$(pwd)}"
+ENABLE_HTTPS="${ENABLE_HTTPS:-true}"
+SSL_CERT_PATH="${SSL_CERT_PATH:-/ssl/ssl.pem}"
+SSL_KEY_PATH="${SSL_KEY_PATH:-/ssl/ssl.key}"
+SSL_EMAIL="${SSL_EMAIL:-}"
 
 # 颜色输出
 RED='\033[0;31m'
@@ -75,23 +79,23 @@ install_nginx() {
         local nginx_version=$(nginx -v 2>&1 | grep -oP 'nginx/\K[0-9.]+')
         set -e
         log_success "Nginx 已安装: ${nginx_version}"
-        return 0
+    else
+        log_info "Nginx 未安装，开始安装 Nginx..."
+        
+        # 安装Nginx
+        set +e
+        apt install -y nginx 2>&1
+        local install_result=$?
+        set -e
+        
+        if [ $install_result -ne 0 ]; then
+            log_error "Nginx 安装失败"
+            exit 1
+        fi
+        
+        log_success "Nginx 安装成功"
     fi
     
-    log_info "Nginx 未安装，开始安装 Nginx..."
-    
-    # 安装Nginx
-    set +e
-    apt install -y nginx 2>&1
-    local install_result=$?
-    set -e
-    
-    if [ $install_result -ne 0 ]; then
-        log_error "Nginx 安装失败"
-        exit 1
-    fi
-    
-    log_success "Nginx 安装成功"
 }
 
 # 启动并启用Nginx
@@ -123,9 +127,54 @@ start_nginx() {
     fi
 }
 
+# 检查SSL证书文件
+check_ssl_certificates() {
+    if [ "$ENABLE_HTTPS" != "true" ]; then
+        return 0
+    fi
+    
+    log_info "检查 SSL 证书文件..."
+    
+    if [ ! -f "$SSL_CERT_PATH" ]; then
+        log_error "SSL 证书文件不存在: $SSL_CERT_PATH"
+        exit 1
+    fi
+    
+    if [ ! -f "$SSL_KEY_PATH" ]; then
+        log_error "SSL 私钥文件不存在: $SSL_KEY_PATH"
+        exit 1
+    fi
+    
+    # 检查文件权限
+    local cert_perms=$(stat -c "%a" "$SSL_CERT_PATH" 2>/dev/null || stat -f "%A" "$SSL_CERT_PATH" 2>/dev/null)
+    local key_perms=$(stat -c "%a" "$SSL_KEY_PATH" 2>/dev/null || stat -f "%A" "$SSL_KEY_PATH" 2>/dev/null)
+    
+    log_info "SSL 证书文件: $SSL_CERT_PATH (权限: $cert_perms)"
+    log_info "SSL 私钥文件: $SSL_KEY_PATH (权限: $key_perms)"
+    
+    # 验证证书格式
+    set +e
+    openssl x509 -in "$SSL_CERT_PATH" -text -noout > /dev/null 2>&1
+    local cert_check=$?
+    set -e
+    
+    if [ $cert_check -ne 0 ]; then
+        log_warning "SSL 证书文件格式验证失败，但将继续使用"
+    else
+        log_success "SSL 证书文件验证通过"
+    fi
+    
+    log_success "SSL 证书文件检查完成"
+}
+
 # 配置Nginx反向代理
 configure_nginx() {
     log_info "配置 Nginx 反向代理..."
+    
+    # 如果启用HTTPS，先检查证书文件
+    if [ "$ENABLE_HTTPS" = "true" ]; then
+        check_ssl_certificates
+    fi
     
     # 备份默认配置（如果存在）
     if [ -f /etc/nginx/sites-enabled/default ]; then
@@ -135,7 +184,118 @@ configure_nginx() {
     
     # 创建网站配置文件
     log_info "创建 Nginx 配置文件..."
-    cat > /etc/nginx/sites-available/${NGINX_SITE_NAME} << EOF
+    
+    if [ "$ENABLE_HTTPS" = "true" ]; then
+        # HTTPS配置：HTTP重定向到HTTPS
+        cat > /etc/nginx/sites-available/${NGINX_SITE_NAME} << EOF
+# HTTP重定向到HTTPS（不带www）
+server {
+    listen 80;
+    server_name yymarines.com;
+    return 301 https://www.yymarines.com\$request_uri;
+}
+
+# HTTP重定向到HTTPS（带www）
+server {
+    listen 80;
+    server_name www.yymarines.com;
+    
+    # 其他请求重定向到HTTPS
+    location / {
+        return 301 https://\$host\$request_uri;
+    }
+}
+
+# HTTPS主服务器配置
+server {
+    listen 443 ssl http2;
+    server_name www.yymarines.com;
+
+    # SSL证书配置
+    ssl_certificate ${SSL_CERT_PATH};
+    ssl_certificate_key ${SSL_KEY_PATH};
+    
+    # SSL配置
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers 'ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384';
+    ssl_prefer_server_ciphers off;
+    ssl_session_cache shared:SSL:10m;
+    ssl_session_timeout 10m;
+    ssl_session_tickets off;
+
+    # 客户端最大请求体大小
+    client_max_body_size 10M;
+
+    # 安全头
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header Referrer-Policy "no-referrer-when-downgrade" always;
+    add_header Content-Security-Policy "default-src 'self' http: https: data: blob: 'unsafe-inline'" always;
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+
+    # 静态文件缓存（Next.js）
+    location /_next/static/ {
+        proxy_pass http://${UPSTREAM_HOST}:${UPSTREAM_PORT};
+        proxy_http_version 1.1;
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto \$scheme;
+        add_header Cache-Control "public, max-age=31536000, immutable";
+    }
+
+    # 图片和静态资源缓存
+    location ~* \.(jpg|jpeg|png|gif|ico|css|js|svg|woff|woff2|ttf|eot)$ {
+        proxy_pass http://${UPSTREAM_HOST}:${UPSTREAM_PORT};
+        proxy_http_version 1.1;
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto \$scheme;
+        add_header Cache-Control "public, max-age=86400";
+    }
+
+    # 主应用代理
+    location / {
+        proxy_pass http://${UPSTREAM_HOST}:${UPSTREAM_PORT};
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade \$http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto \$scheme;
+        proxy_cache_bypass \$http_upgrade;
+        proxy_read_timeout 300s;
+        proxy_connect_timeout 75s;
+        proxy_send_timeout 300s;
+    }
+}
+
+# HTTPS重定向（不带www到带www）
+server {
+    listen 443 ssl http2;
+    server_name yymarines.com;
+    
+    # SSL证书配置
+    ssl_certificate ${SSL_CERT_PATH};
+    ssl_certificate_key ${SSL_KEY_PATH};
+    
+    # SSL配置
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers 'ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384';
+    ssl_prefer_server_ciphers off;
+    ssl_session_cache shared:SSL:10m;
+    ssl_session_timeout 10m;
+    ssl_session_tickets off;
+    
+    return 301 https://www.yymarines.com\$request_uri;
+}
+EOF
+    else
+        # HTTP配置（原有配置）
+        cat > /etc/nginx/sites-available/${NGINX_SITE_NAME} << EOF
 # 重定向不带 www 的域名到带 www 的域名
 server {
     listen 80;
@@ -197,6 +357,7 @@ server {
     }
 }
 EOF
+    fi
     
     # 启用网站配置
     log_info "启用 Nginx 配置..."
@@ -260,7 +421,15 @@ configure_firewall() {
     ufw allow 80/tcp 2>&1
     set -e
     
-    log_success "防火墙配置完成（已允许 HTTP 80 端口）"
+    # 如果启用HTTPS，允许HTTPS端口
+    if [ "$ENABLE_HTTPS" = "true" ]; then
+        set +e
+        ufw allow 443/tcp 2>&1
+        set -e
+        log_success "防火墙配置完成（已允许 HTTP 80 端口和 HTTPS 443 端口）"
+    else
+        log_success "防火墙配置完成（已允许 HTTP 80 端口）"
+    fi
 }
 
 # 加载nvm环境
@@ -365,7 +534,13 @@ show_completion_info() {
     echo ""
     echo "📊 配置信息:"
     echo "  Nginx 版本: $(nginx -v 2>&1 | grep -oP 'nginx/\K[0-9.]+')"
-    echo "  监听端口: 80"
+    if [ "$ENABLE_HTTPS" = "true" ]; then
+        echo "  监听端口: 80 (HTTP), 443 (HTTPS)"
+        echo "  SSL证书: ${SSL_CERT_PATH}"
+        echo "  SSL私钥: ${SSL_KEY_PATH}"
+    else
+        echo "  监听端口: 80 (HTTP)"
+    fi
     echo "  域名: ${SERVER_NAME}"
     echo "  反向代理: http://${UPSTREAM_HOST}:${UPSTREAM_PORT}"
     echo "  配置文件: /etc/nginx/sites-available/${NGINX_SITE_NAME}"
@@ -383,14 +558,26 @@ show_completion_info() {
     echo "  错误日志: tail -f /var/log/nginx/error.log"
     echo ""
     echo "🌐 访问地址:"
-    echo "  域名访问: http://www.yymarines.com"
-    echo "  本地访问: http://localhost"
-    echo "  外部访问: http://$(hostname -I | awk '{print $1}')"
+    if [ "$ENABLE_HTTPS" = "true" ]; then
+        echo "  域名访问: https://www.yymarines.com"
+        echo "  本地访问: https://localhost"
+        echo "  外部访问: https://$(hostname -I | awk '{print $1}')"
+    else
+        echo "  域名访问: http://www.yymarines.com"
+        echo "  本地访问: http://localhost"
+        echo "  外部访问: http://$(hostname -I | awk '{print $1}')"
+    fi
     echo ""
     echo "⚠️  注意事项:"
     echo "  1. 确保应用已在 ${UPSTREAM_HOST}:${UPSTREAM_PORT} 运行"
     echo "  2. 如果应用未运行，Nginx 会返回 502 Bad Gateway"
     echo "  3. 可以通过 'systemctl status nginx' 检查服务状态"
+    if [ "$ENABLE_HTTPS" = "true" ]; then
+        echo "  4. 确保SSL证书文件存在且可读: ${SSL_CERT_PATH}, ${SSL_KEY_PATH}"
+        echo "  5. 确保域名DNS已正确解析到本服务器"
+        echo "  6. 确保防火墙已开放80和443端口"
+        echo "  7. 证书文件权限建议: 证书644，私钥600"
+    fi
 }
 
 # 错误处理函数
@@ -420,6 +607,13 @@ main() {
     echo "=============================="
     echo "域名: ${SERVER_NAME}"
     echo "反向代理端口: ${UPSTREAM_PORT}"
+    if [ "$ENABLE_HTTPS" = "true" ]; then
+        echo "HTTPS: 已启用"
+        echo "SSL证书: ${SSL_CERT_PATH}"
+        echo "SSL私钥: ${SSL_KEY_PATH}"
+    else
+        echo "HTTPS: 未启用"
+    fi
     echo ""
     
     check_root
