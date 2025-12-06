@@ -275,6 +275,56 @@ configure_npm_registry() {
     log_success "npm 镜像源配置完成"
 }
 
+# 安装pnpm
+install_pnpm() {
+    log_info "检查 pnpm 安装状态..."
+    
+    if ! load_nvm; then
+        log_error "无法加载 nvm 环境"
+        exit 1
+    fi
+    
+    # 检查pnpm是否已安装
+    if command -v pnpm &> /dev/null; then
+        set +e
+        local pnpm_version=$(pnpm --version 2>&1)
+        set -e
+        log_success "pnpm 已安装: ${pnpm_version}"
+        return 0
+    fi
+    
+    log_info "pnpm 未安装，开始安装 pnpm..."
+    
+    # 使用npm全局安装pnpm
+    set +e
+    log_info "正在安装 pnpm，这可能需要几分钟..."
+    npm install -g pnpm 2>&1
+    local install_result=$?
+    set -e
+    
+    if [ $install_result -ne 0 ]; then
+        log_error "pnpm 安装失败，退出码: $install_result"
+        log_error "请检查网络连接或 npm 配置"
+        exit 1
+    fi
+    
+    # 配置pnpm使用阿里云镜像
+    set +e
+    pnpm config set registry https://registry.npmmirror.com 2>&1
+    set -e
+    
+    # 验证安装
+    if command -v pnpm &> /dev/null; then
+        set +e
+        local pnpm_version=$(pnpm --version 2>&1)
+        set -e
+        log_success "pnpm 安装成功: ${pnpm_version}"
+    else
+        log_error "pnpm 安装验证失败，pnpm 命令不可用"
+        exit 1
+    fi
+}
+
 # 安装PM2
 install_pm2() {
     log_info "检查 PM2 安装状态..."
@@ -469,30 +519,66 @@ save_pm2_config() {
     
     load_nvm
     
-    pm2 save
+    set +e
+    pm2 save 2>&1
+    set -e
     
     # 设置PM2开机自启
     log_info "设置 PM2 开机自启..."
+    
+    # 检查是否已经配置了开机自启
+    if systemctl is-enabled pm2-root.service &>/dev/null || systemctl is-enabled pm2-$(whoami).service &>/dev/null; then
+        log_success "PM2 开机自启已配置"
+        return 0
+    fi
+    
     if [ "$EUID" -eq 0 ]; then
         # root用户直接设置
-        local startup_cmd=$(pm2 startup systemd -u root --hp /root | grep -v "PM2" | grep -v "Use this command" | grep -v "Copy/paste")
-        if [ -n "$startup_cmd" ]; then
-            eval "$startup_cmd"
-            log_success "PM2 开机自启配置完成"
+        set +e
+        local startup_output=$(pm2 startup systemd -u root --hp /root 2>&1)
+        local startup_result=$?
+        set -e
+        
+        if [ $startup_result -eq 0 ]; then
+            # 提取需要执行的命令（通常是 sudo systemctl enable ...）
+            local startup_cmd=$(echo "$startup_output" | grep -E "^(sudo )?systemctl" | head -1)
+            if [ -n "$startup_cmd" ]; then
+                # 移除 sudo（因为已经是 root）
+                startup_cmd=$(echo "$startup_cmd" | sed 's/^sudo //')
+                set +e
+                eval "$startup_cmd" 2>&1
+                local enable_result=$?
+                set -e
+                
+                if [ $enable_result -eq 0 ]; then
+                    log_success "PM2 开机自启配置完成"
+                else
+                    log_warning "PM2 开机自启配置可能已存在"
+                fi
+            else
+                log_warning "无法从 pm2 startup 输出中提取命令"
+            fi
         else
-            log_warning "PM2 开机自启可能已配置，跳过"
+            log_warning "pm2 startup 命令执行失败，可能已配置"
         fi
     else
         # 普通用户需要sudo
-        local startup_cmd=$(pm2 startup systemd -u $(whoami) --hp $HOME | grep -v "PM2" | grep -v "Use this command" | grep -v "Copy/paste")
-        if echo "$startup_cmd" | grep -q "sudo"; then
-            log_warning "需要执行以下命令设置开机自启:"
-            pm2 startup systemd -u $(whoami) --hp $HOME
-        elif [ -n "$startup_cmd" ]; then
-            eval "$startup_cmd"
-            log_success "PM2 开机自启配置完成"
+        set +e
+        local startup_output=$(pm2 startup systemd -u $(whoami) --hp $HOME 2>&1)
+        local startup_result=$?
+        set -e
+        
+        if [ $startup_result -eq 0 ]; then
+            # 提取需要执行的命令
+            local startup_cmd=$(echo "$startup_output" | grep -E "^sudo systemctl" | head -1)
+            if [ -n "$startup_cmd" ]; then
+                log_warning "需要执行以下命令设置开机自启:"
+                echo "$startup_cmd"
+            else
+                log_warning "无法从 pm2 startup 输出中提取命令"
+            fi
         else
-            log_warning "PM2 开机自启可能已配置，跳过"
+            log_warning "pm2 startup 命令执行失败"
         fi
     fi
 }
@@ -533,25 +619,28 @@ main() {
     echo ""
     
     # 执行启动步骤
-    log_info "步骤 1/7: 检查用户..."
+    log_info "步骤 1/8: 检查用户..."
     check_user
     
-    log_info "步骤 2/7: 安装/检查 nvm..."
+    log_info "步骤 2/8: 安装/检查 nvm..."
     install_nvm
     
-    log_info "步骤 3/7: 安装/检查 Node.js ${NODE_VERSION}..."
+    log_info "步骤 3/8: 安装/检查 Node.js ${NODE_VERSION}..."
     install_nodejs
     
-    log_info "步骤 4/7: 配置 npm 镜像源..."
+    log_info "步骤 4/8: 配置 npm 镜像源..."
     configure_npm_registry
     
-    log_info "步骤 5/7: 安装/检查 PM2..."
+    log_info "步骤 5/8: 安装/检查 pnpm..."
+    install_pnpm
+    
+    log_info "步骤 6/8: 安装/检查 PM2..."
     install_pm2
     
-    log_info "步骤 6/7: 检查项目依赖..."
+    log_info "步骤 7/8: 检查项目依赖..."
     check_project_dependencies
     
-    log_info "步骤 7/7: 启动应用..."
+    log_info "步骤 8/8: 启动应用..."
     start_application
     
     log_info "保存 PM2 配置..."
@@ -604,7 +693,7 @@ handle_error() {
 trap 'handle_error $? $LINENO "$BASH_COMMAND"' ERR
 
 # 设置退出处理（只在非正常退出时显示错误）
-trap 'local exit_code=$?; if [ $exit_code -ne 0 ]; then handle_error $exit_code $LINENO "$BASH_COMMAND"; fi' EXIT
+trap 'exit_code=$?; if [ $exit_code -ne 0 ]; then handle_error $exit_code $LINENO "$BASH_COMMAND"; fi' EXIT
 
 # 执行主函数
 main "$@"
