@@ -22,7 +22,7 @@ export interface CaseDetail {
 }
 
 // 案例ID列表
-const caseIds = [
+export const caseIds = [
   'large-cruise-engineering',
   'regular-maintenance',
   'equipment-supply',
@@ -42,7 +42,7 @@ const caseCategoryMap: Record<string, 'engineering' | 'supply' | 'sale'> = {
 }
 
 // 案例图片映射
-const caseImageMap: Record<string, string> = {
+export const caseImageMap: Record<string, string> = {
   'large-cruise-engineering': '/case1.png',
   'regular-maintenance': '/case2.png',
   'equipment-supply': '/case3.png',
