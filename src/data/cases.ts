@@ -55,24 +55,26 @@ export const caseImageMap: Record<string, string> = {
  * 根据翻译函数获取案例数据
  * @param t 翻译函数
  */
-export function getCasesData(t: (key: string) => string): CaseDetail[] {
+export function getCasesData(
+  t: (key: string, options?: { returnObjects?: boolean }) => string | string[] | object
+): CaseDetail[] {
   return caseIds.map(id => {
     const baseKey = `cases.items.${id}`
     return {
       id,
       category: caseCategoryMap[id],
-      title: t(`${baseKey}.title`),
+      title: t(`${baseKey}.title`) as string,
       tags: (t(`${baseKey}.tags`, { returnObjects: true }) as string[]) || [],
-      description: t(`${baseKey}.description`),
+      description: t(`${baseKey}.description`) as string,
       image: caseImageMap[id],
-      overview: t(`${baseKey}.overview`),
-      challenge: t(`${baseKey}.challenge`),
+      overview: t(`${baseKey}.overview`) as string,
+      challenge: t(`${baseKey}.challenge`) as string,
       solution: (t(`${baseKey}.solution`, { returnObjects: true }) as string[]) || [],
       results: (t(`${baseKey}.results`, { returnObjects: true }) as string[]) || [],
       highlights: (t(`${baseKey}.highlights`, { returnObjects: true }) as string[]) || [],
-      client: t(`${baseKey}.client`),
-      duration: t(`${baseKey}.duration`),
-      location: t(`${baseKey}.location`)
+      client: t(`${baseKey}.client`) as string,
+      duration: t(`${baseKey}.duration`) as string,
+      location: t(`${baseKey}.location`) as string
     }
   })
 }
@@ -85,7 +87,10 @@ export function getCasesData(t: (key: string) => string): CaseDetail[] {
  * @param id 案例ID
  * @param t 翻译函数
  */
-export function getCaseById(id: string, t: (key: string) => string): CaseDetail | undefined {
+export function getCaseById(
+  id: string,
+  t: (key: string, options?: { returnObjects?: boolean }) => string | string[] | object
+): CaseDetail | undefined {
   const cases = getCasesData(t)
   return cases.find(caseItem => caseItem.id === id)
 }
@@ -95,7 +100,10 @@ export function getCaseById(id: string, t: (key: string) => string): CaseDetail 
  * @param category 案例类别
  * @param t 翻译函数
  */
-export function getCasesByCategory(category: string, t: (key: string) => string): CaseDetail[] {
+export function getCasesByCategory(
+  category: string,
+  t: (key: string, options?: { returnObjects?: boolean }) => string | string[] | object
+): CaseDetail[] {
   const cases = getCasesData(t)
   if (category === 'all') {
     return cases

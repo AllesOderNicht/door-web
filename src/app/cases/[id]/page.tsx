@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import { CaseDetailPageClient } from './CaseDetailPageClient'
@@ -16,7 +17,7 @@ interface PageProps {
 type CaseItem = {
   title: string
   description: string
-  [key: string]: any
+  [key: string]: unknown
 }
 
 // 动态生成 Metadata
