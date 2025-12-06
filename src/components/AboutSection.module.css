@@ -1,0 +1,176 @@
+/* ============================================
+   关于我们区域样式
+   ============================================ */
+.about {
+  background-color: var(--white);  /* 白色背景 */
+  position: relative;              /* 相对定位 */
+  padding: 100px 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.about .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.sectionTitle {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.sectionTitle h2 {
+  font-size: 2.5rem;
+  color: var(--primary-blue);
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+}
+
+.sectionTitle h2::after {
+  content: '';
+  position: absolute;
+  width: 70px;
+  height: 3px;
+  background: var(--accent-red);
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.sectionTitle p {
+  color: var(--text-gray);
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
+
+/* 关于我们内容区域：使用Flex布局实现左右分布 */
+.aboutContent {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+/* 关于我们文字内容区域 */
+.aboutText {
+  flex: 1;
+}
+
+/* 关于我们标题 */
+.aboutText h3 {
+  font-size: 2rem;
+  color: var(--primary-blue);
+  margin-bottom: 20px;
+}
+
+/* 关于我们段落文字 */
+.aboutText p {
+  margin-bottom: 20px;
+  color: var(--text-gray);
+}
+
+/* 关于我们特色功能网格：2列布局 */
+.aboutFeatures {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 30px;
+}
+
+/* 特色功能项：图标+文字 */
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+/* 特色功能图标：圆形背景 */
+.featureIcon {
+  background: var(--light-gray);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-blue);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+/* 特色功能文字标题 */
+.featureText h4 {
+  margin-bottom: 5px;
+  color: var(--dark-gray);
+}
+
+.featureText p {
+  margin-bottom: 0;
+  color: var(--text-gray);
+  font-size: 0.9rem;
+}
+
+/* 关于我们图片区域：右侧图片 */
+.aboutImage {
+  flex: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transform: translateY(20px);
+  opacity: 0;
+  animation: fadeInRight 1s 0.5s forwards;
+}
+
+.aboutImage .image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+/* 图片悬停效果：放大 */
+.aboutImage:hover .image {
+  transform: scale(1.05);
+}
+
+/* 淡入从右动画：元素从右侧淡入显示 */
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 992px) {
+  .aboutContent {
+    flex-direction: column;
+  }
+  
+  .sectionTitle h2 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .about {
+    padding: 60px 0;
+  }
+  
+  .sectionTitle h2 {
+    font-size: 2rem;
+  }
+  
+  .aboutFeatures {
+    grid-template-columns: 1fr;
+  }
+}
+

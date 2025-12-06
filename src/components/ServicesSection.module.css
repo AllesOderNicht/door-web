@@ -1,0 +1,143 @@
+/* ============================================
+   服务内容区域样式
+   ============================================ */
+.services {
+  background-color: var(--light-gray);
+  position: relative;
+  padding: 100px 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.services .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.sectionTitle {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.sectionTitle h2 {
+  font-size: 2.5rem;
+  color: var(--primary-blue);
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+}
+
+.sectionTitle h2::after {
+  content: '';
+  position: absolute;
+  width: 70px;
+  height: 3px;
+  background: var(--accent-red);
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.sectionTitle p {
+  color: var(--text-gray);
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
+
+/* 服务卡片网格：自适应列数，每列最小320px */
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+/* 服务卡片：单个服务项目 */
+.serviceCard {
+  background: var(--white);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+/* 服务卡片悬停时的蓝色渐变背景（初始高度为0，悬停时展开） */
+.serviceCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
+/* 服务卡片悬停效果：向上浮起 */
+.serviceCard:hover {
+  transform: translateY(-10px);
+}
+
+/* 服务卡片悬停时背景展开 */
+.serviceCard:hover::before {
+  height: 100%;
+}
+
+/* 服务卡片悬停时文字变为白色 */
+.serviceCard:hover .serviceContent h3,
+.serviceCard:hover .serviceContent p {
+  color: var(--white);
+}
+
+/* 服务图标区域 */
+.serviceIcon {
+  background-color: var(--light-gray);
+  color: var(--primary-blue);
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  transition: all 0.3s ease;
+}
+
+/* 服务内容区域 */
+.serviceContent {
+  padding: 30px;
+  transition: all 0.3s ease;
+}
+
+/* 服务标题 */
+.serviceContent h3 {
+  margin-bottom: 15px;
+  color: var(--primary-blue);
+  transition: all 0.3s ease;
+}
+
+/* 服务描述文字 */
+.serviceContent p {
+  color: var(--text-gray);
+  transition: all 0.3s ease;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .services {
+    padding: 60px 0;
+  }
+  
+  .sectionTitle h2 {
+    font-size: 2rem;
+  }
+  
+  .servicesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+

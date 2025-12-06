@@ -1,0 +1,182 @@
+/* ============================================
+   基础样式与全局变量定义
+   ============================================ */
+/* CSS变量定义（颜色、阴影、过渡效果等）
+   使用CSS变量便于统一管理和修改主题色彩 */
+:root {
+  --primary-blue: #1a4b8c;        /* 主色调：深蓝色 */
+  --secondary-blue: #2d6cbf;      /* 次要蓝色：用于渐变和悬停效果 */
+  --accent-red: #e63946;          /* 强调色：红色，用于重要元素和装饰 */
+  --light-gray: #f8f9fa;          /* 浅灰色：用于背景和卡片 */
+  --dark-gray: #333;              /* 深灰色：用于主要文本 */
+  --text-gray: #666;              /* 文本灰色：用于次要文本 */
+  --white: #ffffff;               /* 白色：用于背景和文字 */
+  --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);  /* 卡片阴影效果 */
+  --transition: all 0.3s ease;    /* 统一过渡动画时间 */
+}
+
+/* 全局样式重置：移除所有元素的默认边距和内边距 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;  /* 使用border-box盒模型，包含padding和border */
+  font-family: 'Segoe UI', 'Microsoft YaHei', Arial, sans-serif;  /* 字体设置：优先使用微软雅黑 */
+}
+
+/* HTML根元素：启用平滑滚动效果 */
+html {
+  scroll-behavior: smooth;  /* 点击锚点链接时平滑滚动到目标位置 */
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;      /* 防止水平滚动 */
+  box-sizing: border-box;
+}
+
+/* 页面主体样式 */
+body {
+  color: var(--dark-gray);         /* 文本颜色 */
+  line-height: 1.6;                /* 行高：提升可读性 */
+  background-color: var(--white);  /* 背景色 */
+  overflow-x: hidden;              /* 隐藏横向滚动条，防止水平溢出 */
+  width: 100%;
+  max-width: 100%;
+  position: relative;              /* 为固定定位元素提供定位上下文 */
+}
+
+/* 主容器 */
+main {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* 链接默认样式：移除下划线，继承父元素颜色 */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 容器类：用于限制内容最大宽度并居中显示 */
+.container {
+  max-width: 1200px;  /* 最大宽度：适配大屏幕 */
+  margin: 0 auto;     /* 水平居中 */
+  padding: 0 20px;    /* 左右内边距：移动端留白 */
+}
+
+/* 区块间距：为各个内容区块设置上下内边距 */
+.section-padding {
+  padding: 100px 0;  /* 上下各100px间距，营造呼吸感 */
+}
+
+/* 区块标题样式：统一各区块的标题格式 */
+.section-title {
+  text-align: center;     /* 标题居中 */
+  margin-bottom: 60px;    /* 标题下方间距 */
+}
+
+/* 区块主标题样式 */
+.section-title h2 {
+  font-size: 2.5rem;              /* 字体大小 */
+  color: var(--primary-blue);      /* 主色调 */
+  margin-bottom: 15px;             /* 与副标题的间距 */
+  position: relative;              /* 相对定位：为下方装饰线定位 */
+  display: inline-block;           /* 内联块：便于居中装饰线 */
+}
+
+/* 标题下方的装饰线（红色下划线） */
+.section-title h2::after {
+  content: '';                     /* 伪元素内容为空 */
+  position: absolute;              /* 绝对定位 */
+  width: 70px;                     /* 装饰线宽度 */
+  height: 3px;                     /* 装饰线高度 */
+  background: var(--accent-red);   /* 红色装饰线 */
+  bottom: -10px;                   /* 位于标题下方10px */
+  left: 50%;                       /* 从左50%位置开始 */
+  transform: translateX(-50%);     /* 向左移动自身宽度的50%，实现居中 */
+}
+
+/* 区块副标题（描述文字）样式 */
+.section-title p {
+  color: var(--text-gray);         /* 灰色文字 */
+  max-width: 700px;                /* 最大宽度：防止文字过宽 */
+  margin: 0 auto;                  /* 水平居中 */
+  font-size: 1.1rem;               /* 字体大小 */
+}
+
+/* 按钮通用样式：用于主要的交互按钮 */
+.btn {
+  display: inline-block;           /* 内联块：可设置宽高且不独占一行 */
+  background: linear-gradient(135deg, var(--accent-red), #c1121f);  /* 红色渐变背景 */
+  color: var(--white);             /* 白色文字 */
+  padding: 14px 32px;              /* 内边距：上下14px，左右32px */
+  border-radius: 30px;             /* 圆角：创建胶囊形状 */
+  font-weight: 600;                /* 加粗字体 */
+  transition: var(--transition);   /* 平滑过渡效果 */
+  box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);  /* 红色阴影 */
+  border: none;                    /* 移除默认边框 */
+  cursor: pointer;                 /* 鼠标悬停显示手型 */
+}
+
+/* 按钮悬停效果：提升视觉反馈 */
+.btn:hover {
+  transform: translateY(-3px);     /* 向上移动3px，产生浮起效果 */
+  box-shadow: 0 7px 20px rgba(230, 57, 70, 0.4);  /* 增强阴影 */
+}
+
+/* ============================================
+   CSS动画定义
+   ============================================ */
+/* 淡入向上动画：元素从下方淡入显示 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;                 /* 起始状态：完全透明 */
+    transform: translateY(30px);  /* 起始位置：向下偏移30px */
+  }
+  to {
+    opacity: 1;                 /* 结束状态：完全不透明 */
+    transform: translateY(0);   /* 结束位置：正常位置 */
+  }
+}
+
+/* 淡入从右动画：元素从右侧淡入显示 */
+@keyframes fadeInRight {
+  from {
+    opacity: 0;                 /* 起始状态：完全透明 */
+    transform: translateX(30px);  /* 起始位置：向右偏移30px */
+  }
+  to {
+    opacity: 1;                 /* 结束状态：完全不透明 */
+    transform: translateX(0);   /* 结束位置：正常位置 */
+  }
+}
+
+/* ============================================
+   响应式设计：媒体查询
+   针对不同屏幕尺寸优化布局和样式
+   ============================================ */
+/* 中等屏幕（平板，最大宽度992px）的样式调整 */
+@media (max-width: 992px) {
+  .section-title h2 {
+    font-size: 2.2rem;
+  }
+}
+
+/* 小屏幕（手机，最大宽度768px）的样式调整 */
+@media (max-width: 768px) {
+  .section-title h2 {
+    font-size: 2rem;
+  }
+  
+  .section-padding {
+    padding: 60px 0;
+  }
+}
+
+/* 超小屏幕（小手机，最大宽度576px）的样式调整 */
+@media (max-width: 576px) {
+  .section-title h2 {
+    font-size: 1.8rem;
+  }
+}
+

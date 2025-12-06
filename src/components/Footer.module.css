@@ -1,0 +1,111 @@
+/* ============================================
+   页脚区域样式
+   ============================================ */
+.footer {
+  background: linear-gradient(135deg, var(--primary-blue), #0d2c5a);
+  color: var(--white);
+  padding: 70px 0 20px;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* 页脚内容网格：自适应列数布局 */
+.footerContent {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+/* 页脚Logo样式 */
+.footerAbout .footerLogo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 页脚公司介绍文字 */
+.footerAbout p {
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+/* 页脚链接区块标题 */
+.footerLinks h4 {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+/* 页脚链接标题下方的红色装饰线 */
+.footerLinks h4::after {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 2px;
+  background: var(--accent-red);
+  bottom: 0;
+  left: 0;
+}
+
+/* 页脚链接列表 */
+.footerLinks ul {
+  list-style: none;
+}
+
+/* 页脚链接列表项 */
+.footerLinks ul li {
+  margin-bottom: 12px;
+}
+
+/* 页脚链接样式 */
+.footerLinks ul li a {
+  opacity: 0.8;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--white);
+  font-size: 0.9rem;
+}
+
+.footerLinks ul li a svg {
+  font-size: 0.8rem;
+}
+
+/* 页脚链接悬停效果：完全不透明，变红色，向右移动 */
+.footerLinks ul li a:hover {
+  opacity: 1;
+  color: var(--accent-red);
+  transform: translateX(5px);
+}
+
+/* 版权信息区域 */
+.copyright {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .footerContent {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+

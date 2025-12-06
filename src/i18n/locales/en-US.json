@@ -1,0 +1,340 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "services": "Services",
+    "cases": "Cases",
+    "contact": "Contact Us"
+  },
+  "hero": {
+    "title": "Professional Marine Engineering Services & Supply",
+    "description": "Yiyang Marine Service provides professional, efficient, and reliable marine technical services to the global shipping industry, including marine engineering services, equipment supply, and general cargo ship trading.",
+    "cta": "Contact Us"
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Yiyang Marine Service is a professional marine technical service company with rich industry experience and a professional team",
+    "mission": "Our Mission",
+    "content": {
+      "paragraph1": "Yiyang Marine Service is committed to providing high-quality and efficient marine technical services to the global shipping industry. We have an experienced and skilled professional team that can provide comprehensive marine technical solutions to our clients.",
+      "paragraph2": "Our headquarters is located in Shanghai. With our superior geographical location and convenient transportation conditions, we can quickly respond to customer needs and provide timely and effective services.",
+      "paragraph3": "We always adhere to customer-centric principles, seek survival through quality, seek development through innovation, and establish long-term stable cooperative relationships with our clients."
+    },
+    "features": {
+      "team": {
+        "title": "Professional Team",
+        "description": "Experienced professional technical personnel"
+      },
+      "services": {
+        "title": "Diverse Services",
+        "description": "Comprehensive services including marine engineering, supply, and trading"
+      },
+      "response": {
+        "title": "Quick Response",
+        "description": "24-hour rapid response to customer needs"
+      },
+      "quality": {
+        "title": "Quality Assurance",
+        "description": "Strict quality control system"
+      }
+    }
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive and professional marine technical services",
+    "items": {
+      "maintenance": {
+        "title": "Ship Maintenance & Repair",
+        "description": "Provide comprehensive maintenance and repair services for various types of ships, including regular inspections, troubleshooting, and equipment maintenance, ensuring safe ship operations."
+      },
+      "supply": {
+        "title": "Marine Equipment Supply",
+        "description": "Supply various marine equipment, spare parts, and materials. We have established long-term cooperative relationships with many well-known brands to ensure product quality."
+      },
+      "consulting": {
+        "title": "Marine Technical Consulting",
+        "description": "Provide professional technical consulting services in ship design, modification, inspection, and other aspects, helping clients solve various technical problems."
+      },
+      "inspection": {
+        "title": "Ship Inspection & Certification",
+        "description": "Assist clients in completing various ship inspections and certification work, ensuring ships comply with international conventions and classification society requirements."
+      },
+      "crew": {
+        "title": "Crew Dispatch & Management",
+        "description": "Provide high-quality crew dispatch services, including crew recruitment, training, management, and other comprehensive human resource solutions."
+      },
+      "sale": {
+        "title": "General Cargo Ship Trading",
+        "description": "Professional general cargo ship trading intermediary services, including ship evaluation, transaction negotiation, contract signing, and other comprehensive services."
+      }
+    }
+  },
+  "cases": {
+    "title": "Service Cases",
+    "subtitle": "Our successful cases in marine engineering services and equipment supply",
+    "categories": {
+      "all": "All Cases",
+      "engineering": "Marine Engineering Services",
+      "supply": "Marine Equipment Supply",
+      "sale": "Ship Trading"
+    },
+    "viewDetails": "View Details",
+    "items": {
+      "large-cruise-engineering": {
+        "title": "Large Passenger Ship Engineering Services",
+        "tags": ["Marine Engineering", "Equipment Maintenance", "System Upgrade"],
+        "description": "Providing comprehensive marine engineering services for multiple large passenger ships, including main engine maintenance, navigation system upgrades, and ship equipment replacement, ensuring safe ship operations.",
+        "overview": "This project provides comprehensive marine engineering services for three large passenger ships of an international shipping company. These passenger ships undertake important passenger transport tasks and have extremely high requirements for safety and reliability. After receiving the project, our team immediately organized professional technical personnel for on-site surveys and developed detailed engineering service plans.",
+        "challenge": "Large passenger ship equipment systems are complex, involving main engines, auxiliary engines, navigation, communication, safety, and other systems. Under the premise of ensuring normal ship operations, it is necessary to efficiently complete equipment maintenance and system upgrade work. At the same time, passenger ships have extremely high safety standard requirements, and all engineering must comply with relevant regulations of the International Maritime Organization (IMO).",
+        "solution": [
+          "Form a professional engineering team, including marine engineers, electrical engineers, mechanical engineers, etc., to ensure expert support in all professional fields",
+          "Develop a phased construction plan, use the time window when ships dock at ports, reasonably arrange various engineering schedules, and minimize the impact on operations",
+          "Conduct comprehensive maintenance of the main engine system, replace worn parts, optimize operating parameters, and improve main engine efficiency and reliability",
+          "Upgrade the navigation system, install the latest electronic chart system and GPS positioning equipment to improve navigation safety",
+          "Replace old safety equipment, including life-saving equipment, fire-fighting systems, and emergency communication equipment, to ensure compliance with the latest safety standards",
+          "Establish a 24-hour technical support hotline to provide continuous technical support and maintenance services after project completion"
+        ],
+        "results": [
+          "All three passenger ships completed engineering services on schedule without affecting normal operating plans",
+          "Main engine operating efficiency increased by 15%, fuel consumption reduced by 12%, significantly reducing operating costs",
+          "After the navigation system upgrade, navigation safety was greatly improved and classification society certification was obtained",
+          "All equipment passed the International Maritime Organization safety standard inspection and obtained relevant certificates",
+          "Customer satisfaction reached 98%, and a long-term maintenance service contract was signed subsequently"
+        ],
+        "highlights": [
+          "Completed all engineering services with zero accidents",
+          "Completed all engineering 5 days ahead of schedule while ensuring safety",
+          "Saved customers approximately 2 million yuan/year in operating costs",
+          "Received high recognition from classification societies and maritime departments"
+        ],
+        "client": "An International Shipping Company",
+        "duration": "6 months",
+        "location": "Shanghai, Qingdao, Dalian"
+      },
+      "regular-maintenance": {
+        "title": "Ship Regular Maintenance Project",
+        "tags": ["Ship Maintenance", "Regular Inspection", "Technical Services"],
+        "description": "Providing regular maintenance services for multiple shipping companies, including equipment inspection, system optimization, and preventive maintenance to extend ship service life.",
+        "overview": "This project provides regular maintenance services for 15 ships of various types from five shipping companies. These ships include different types such as bulk carriers, container ships, and tankers, with operating routes spanning the globe. We have established a comprehensive regular maintenance system to ensure that each ship receives timely and professional maintenance services.",
+        "challenge": "The maintenance needs of ships of different types and ages vary greatly, requiring personalized maintenance plans. At the same time, ships are distributed in different ports, requiring coordination of maintenance times to avoid affecting normal operations. In addition, preventive maintenance requires accurate judgment of equipment status and early detection of potential problems.",
+        "solution": [
+          "Establish a ship maintenance database to record equipment information, maintenance history, and operating data of each ship for precise management",
+          "Develop classified maintenance standards, formulate corresponding maintenance cycles and inspection items for different ship types and equipment",
+          "Form a mobile maintenance team equipped with professional tools and equipment to provide on-site maintenance services at major ports",
+          "Implement preventive maintenance plans, regularly inspect key equipment, and replace vulnerable parts in advance to avoid sudden failures",
+          "Provide remote technical support, quickly solve technical problems through video calls and online diagnosis",
+          "Establish a spare parts inventory system to ensure timely supply of commonly used spare parts and shorten maintenance time"
+        ],
+        "results": [
+          "All 15 ships were included in the regular maintenance system with a maintenance timeliness rate of 100%",
+          "Equipment failure rate decreased by 40%, significantly improving ship reliability",
+          "Through preventive maintenance, three major equipment failures were avoided, saving maintenance costs of approximately 5 million yuan",
+          "The average service life of ship equipment was extended by 2-3 years, creating significant value for customers",
+          "Customer satisfaction has remained above 95%, and all five shipping companies have renewed maintenance contracts"
+        ],
+        "highlights": [
+          "Established a comprehensive ship maintenance management system",
+          "Maintenance timeliness rate of 100% with zero delay records",
+          "Saved customers more than 5 million yuan in maintenance costs",
+          "Received high recognition and contract renewals from all customers"
+        ],
+        "client": "Five Shipping Companies (15 ships)",
+        "duration": "Ongoing Service",
+        "location": "Major Ports Worldwide"
+      },
+      "equipment-supply": {
+        "title": "Marine Equipment Supply Project",
+        "tags": ["Equipment Supply", "Spare Parts Procurement", "Quality Assurance"],
+        "description": "Providing equipment supply services for multiple ships, including main engine spare parts, navigation equipment, and safety systems, ensuring equipment quality and timely delivery.",
+        "overview": "This project provides equipment supply services for more than 20 ships of various types, involving multiple categories such as main engine spare parts, navigation equipment, communication equipment, and safety systems. We have established long-term cooperative relationships with high-quality equipment manufacturers worldwide, enabling us to provide customers with high-quality and reasonably priced marine equipment.",
+        "challenge": "There are many types of marine equipment, and different ship types and manufacturers have different requirements for equipment specifications, requiring accurate matching. At the same time, marine equipment has extremely high quality requirements and must comply with international standards and classification society certification. In addition, ship operations cannot be interrupted, and equipment supply must be timely and must not affect normal ship operations.",
+        "solution": [
+          "Establish an equipment supplier network, establish cooperative relationships with more than 50 high-quality equipment manufacturers worldwide to ensure reliable equipment sources",
+          "Set up an equipment quality inspection center to strictly inspect all supplied equipment to ensure compliance with international standards and customer requirements",
+          "Establish an equipment inventory management system, set up spare parts warehouses at major ports to ensure rapid supply of commonly used equipment",
+          "Provide one-stop equipment supply services, from equipment selection, procurement, inspection to delivery, with full tracking services",
+          "Establish an equipment traceability system to record the source, inspection records, and usage of each piece of equipment to ensure quality traceability",
+          "Provide equipment installation guidance and technical support to ensure correct equipment installation and use"
+        ],
+        "results": [
+          "Supplied more than 500 pieces of various equipment for more than 20 ships with an equipment qualification rate of 100%",
+          "Equipment delivery timeliness rate reached 98%, with no cases of ship operation delays due to equipment supply delays",
+          "Through centralized procurement and supply chain optimization, saved customers approximately 15% in equipment procurement costs",
+          "All supplied equipment passed classification society certification and received recognition from customers and classification societies",
+          "Established a comprehensive equipment supply system, laying a solid foundation for subsequent business development"
+        ],
+        "highlights": [
+          "Equipment qualification rate of 100% with zero quality issues",
+          "Delivery timeliness rate of 98%, ensuring normal ship operations",
+          "Saved customers approximately 15% in procurement costs",
+          "Established a global equipment supplier network"
+        ],
+        "client": "Multiple Shipping Companies (more than 20 ships)",
+        "duration": "12 months",
+        "location": "Major Ports Worldwide"
+      },
+      "engineering-equipment-supply": {
+        "title": "Marine Engineering Equipment Supply",
+        "tags": ["Engineering Supply", "Equipment Procurement", "Technical Services"],
+        "description": "Providing marine engineering equipment supply services for multiple shipping companies, including main engine spare parts, navigation equipment, and safety systems.",
+        "overview": "This project provides equipment supply services for a ship engineering renovation project of a large shipping company. The project involves equipment updates and system upgrades for 10 ships, requiring the supply of a large amount of engineering equipment. As the main equipment supplier, we are responsible for providing key equipment such as main engine systems, power systems, and automation systems.",
+        "challenge": "Engineering equipment supply needs to be closely coordinated with engineering progress, and equipment must arrive on time without affecting engineering progress. At the same time, engineering equipment technical specifications are complex, requiring coordination with engineering parties and equipment manufacturers to ensure equipment meets engineering requirements. In addition, some equipment requires custom production with longer cycles, requiring advance planning.",
+        "solution": [
+          "Establish a dedicated supply team, establish close communication mechanisms with engineering parties, and track engineering progress and equipment needs in real time",
+          "Develop equipment supply plans in advance, reverse schedule equipment delivery times based on engineering progress to ensure equipment arrives on time",
+          "Establish direct contact with equipment manufacturers, place orders in advance for custom equipment to shorten production cycles",
+          "Establish equipment pre-inspection mechanisms to inspect equipment before leaving the factory to ensure equipment quality meets requirements",
+          "Set up equipment warehouses at engineering sites, transport equipment to the site in advance to ensure availability at any time",
+          "Provide equipment installation guidance and technical support to assist engineering parties in completing equipment installation and debugging"
+        ],
+        "results": [
+          "Supplied more than 300 pieces of engineering equipment for 10 ships, all delivered on time without affecting engineering progress",
+          "All equipment quality was qualified, passed engineering acceptance at once, and received recognition from engineering parties and classification societies",
+          "Through supply process optimization, equipment supply cycle was shortened by 20%, improving engineering efficiency",
+          "Saved customers approximately 2 million yuan in equipment procurement costs while ensuring equipment quality",
+          "Established standard processes for engineering equipment supply, accumulating experience for subsequent similar projects"
+        ],
+        "highlights": [
+          "Equipment on-time delivery rate of 100% with zero delays",
+          "Equipment quality qualification rate of 100%, passed acceptance at once",
+          "Supply cycle shortened by 20%, improving engineering efficiency",
+          "Saved customers approximately 2 million yuan in costs"
+        ],
+        "client": "A Large Shipping Company",
+        "duration": "18 months",
+        "location": "Shanghai, Guangzhou, Dalian"
+      },
+      "cargo-ship-transaction": {
+        "title": "General Cargo Ship Transaction Case",
+        "tags": ["General Cargo Ship", "Ship Trading", "Transaction Intermediary"],
+        "description": "Assisting domestic shipowners in completing the trading of multiple general cargo ships, providing comprehensive services including ship evaluation, transaction negotiation, and contract signing.",
+        "overview": "This project assists domestic shipowners in completing the trading of 8 general cargo ships, including different types such as bulk carriers and general cargo ships. As a professional ship trading intermediary, we provide customers with full-process services from ship evaluation, market analysis, transaction negotiation to contract signing, ensuring smooth transaction completion.",
+        "challenge": "Ship transactions involve large amounts and high risks, requiring accurate ship value assessment to avoid transaction risks. At the same time, the interests of buyers and sellers are different, requiring balancing the interests of both parties to facilitate transactions. In addition, ship transactions involve complex legal procedures and documents, requiring professional knowledge and experience.",
+        "solution": [
+          "Form a professional evaluation team to conduct detailed evaluations of each ship, including hull condition, equipment status, certificate status, etc., and issue professional evaluation reports",
+          "Conduct market research, analyze market prices and trading trends of similar ships, and provide customers with reasonable price suggestions",
+          "Assist buyers and sellers in transaction negotiations, balance the interests of both parties, and facilitate transaction completion",
+          "Provide legal consulting services, assist in drafting and reviewing transaction contracts to ensure contract terms are legal and compliant",
+          "Assist in handling ship transfer procedures, including ship registration, certificate changes, etc., to ensure smooth transaction completion",
+          "Provide post-transaction tracking services to assist in resolving issues that may arise after transactions"
+        ],
+        "results": [
+          "Successfully completed transactions of 8 cargo ships with a total transaction amount exceeding 200 million yuan",
+          "All transactions were completed smoothly without transaction disputes or legal issues",
+          "Saved customers approximately 3 million yuan in transaction costs while ensuring transaction safety",
+          "Transaction cycle was shortened by an average of 30%, improving transaction efficiency",
+          "Established a good market reputation and received high recognition from both buyers and sellers"
+        ],
+        "highlights": [
+          "Transaction success rate of 100% with zero disputes",
+          "Saved customers approximately 3 million yuan in transaction costs",
+          "Transaction cycle shortened by 30%, significantly improving efficiency",
+          "Established a professional ship trading service system"
+        ],
+        "client": "Multiple Domestic Shipowners",
+        "duration": "24 months",
+        "location": "Major Ports Nationwide"
+      },
+      "technology-upgrade": {
+        "title": "Ship Technology Upgrade Services",
+        "tags": ["Technology Upgrade", "Engineering Services", "System Optimization"],
+        "description": "Providing technology upgrade services for multiple ships, including navigation system updates, communication equipment upgrades, and energy efficiency optimization to improve ship operating efficiency.",
+        "overview": "This project provides technology upgrade services for 12 ships of various types, focusing on improving ship intelligence and energy efficiency. As the shipping industry develops towards intelligence and green development, ship technology upgrades have become an important means to enhance competitiveness. We provided comprehensive technology upgrade solutions for these ships, including navigation systems, communication systems, and energy efficiency management systems.",
+        "challenge": "Technology upgrades need to be carried out without affecting normal ship operations, requiring reasonable arrangement of upgrade times. At the same time, ships of different types and ages have different technical foundations, requiring personalized upgrade plans. In addition, the compatibility of new technologies with existing systems needs to be fully considered to ensure stable system operation after upgrades.",
+        "solution": [
+          "Conduct technical assessments, analyze the technical status and upgrade needs of each ship, and develop personalized upgrade plans",
+          "Select mature and reliable new technologies and equipment to ensure technical advancement and system stability",
+          "Develop phased upgrade plans, use the time window when ships dock at ports to gradually complete various upgrades",
+          "Establish system integration solutions to ensure good compatibility between new systems and existing systems and avoid system conflicts",
+          "Provide technical training to ensure crew can skillfully operate new systems and fully utilize the advantages of new technologies",
+          "Establish a technical support system to provide continuous technical support and system optimization services after upgrades"
+        ],
+        "results": [
+          "All 12 ships completed technology upgrades with stable system operation and no technical failures",
+          "Navigation accuracy improved by 30%, significantly improving navigation safety",
+          "After communication system upgrades, communication quality and coverage were greatly improved",
+          "After energy efficiency management system optimization, fuel consumption decreased by 10-15%, significantly reducing operating costs",
+          "Ship intelligence level was greatly improved, laying a technical foundation for subsequent development",
+          "Customer satisfaction reached 96%, and multiple ships plan to conduct further technology upgrades"
+        ],
+        "highlights": [
+          "Technology upgrade success rate of 100% with stable system operation",
+          "Fuel consumption decreased by 10-15%, significantly reducing operating costs",
+          "Navigation accuracy improved by 30%, significantly improving safety",
+          "Established a comprehensive ship technology upgrade service system"
+        ],
+        "client": "Multiple Shipping Companies (12 ships)",
+        "duration": "18 months",
+        "location": "Major Ports Nationwide"
+      }
+    },
+    "backToList": "Back to Cases",
+    "viewMore": "View More Cases",
+    "detail": {
+      "overview": "Project Overview",
+      "challenge": "Challenges",
+      "solution": "Solution",
+      "results": "Results",
+      "highlights": "Highlights",
+      "client": "Client",
+      "duration": "Duration",
+      "location": "Location"
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Feel free to contact us anytime, we are ready to serve you",
+    "companyName": "Yiyang Marine Service",
+    "info": {
+      "address": {
+        "title": "Office Address",
+        "content": "Room 223, Building D, No. 5589 Hutai Road, Baoshan District, Shanghai"
+      },
+      "phone": {
+        "title": "Phone",
+        "content": "+86 19302176367"
+      },
+      "email": {
+        "title": "Email",
+        "content": "yyservice@yymarines.com"
+      },
+      "hours": {
+        "title": "Business Hours",
+        "content": "Monday to Friday 9:00-18:00"
+      }
+    },
+    "description": "We are located in Baoshan District, Shanghai, with convenient transportation. Customers are welcome to visit us for business discussions. Our professional team focuses on marine engineering services, equipment supply, and general cargo ship trading services.",
+    "form": {
+      "title": "Send Inquiry",
+      "name": "Name",
+      "company": "Company Name",
+      "phone": "Phone",
+      "email": "Email",
+      "service": "Service of Interest",
+      "servicePlaceholder": "Please select service type",
+      "serviceOptions": {
+        "engineering": "Marine Engineering Services",
+        "supply": "Marine Equipment Supply",
+        "maintenance": "Ship Maintenance & Repair",
+        "consulting": "Marine Technical Consulting",
+        "inspection": "Ship Inspection & Certification",
+        "crew": "Crew Dispatch & Management",
+        "sale": "General Cargo Ship Trading"
+      },
+      "message": "Detailed Requirements",
+      "submit": "Send Inquiry",
+      "submitting": "Sending...",
+      "success": "Inquiry submitted successfully! We will contact you soon.",
+      "error": "Submission failed, please try again later",
+      "networkError": "Network error, please check your connection and try again"
+    }
+  },
+  "footer": {
+    "companyName": "Yiyang Marine Service",
+    "description": "Professional marine service provider, headquartered in Shanghai, specializing in marine engineering services, equipment supply, and general cargo ship trading services.",
+    "quickLinks": "Quick Links",
+    "contactInfo": "Contact Information",
+    "copyright": "© 2023 Yiyang Marine Service. All rights reserved."
+  }
+}
+

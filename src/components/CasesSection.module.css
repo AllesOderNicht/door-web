@@ -1,0 +1,196 @@
+/* ============================================
+   服务案例展示区域样式
+   ============================================ */
+.cases {
+  background-color: var(--white);
+  position: relative;
+  padding: 100px 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.cases .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.sectionTitle {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.sectionTitle h2 {
+  font-size: 2.5rem;
+  color: var(--primary-blue);
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+}
+
+.sectionTitle h2::after {
+  content: '';
+  position: absolute;
+  width: 70px;
+  height: 3px;
+  background: var(--accent-red);
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.sectionTitle p {
+  color: var(--text-gray);
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
+
+/* 案例筛选标签按钮容器 */
+.casesTabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+/* 案例筛选标签按钮样式 */
+.tabBtn {
+  background: var(--light-gray);
+  border: none;
+  padding: 12px 25px;
+  margin: 0 10px 10px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  color: var(--dark-gray);
+  font-size: 1rem;
+}
+
+/* 激活状态的标签按钮：蓝色背景，白色文字 */
+.tabBtn.active {
+  background: var(--primary-blue);
+  color: var(--white);
+}
+
+/* 标签按钮悬停效果（非激活状态）：蓝色背景 */
+.tabBtn:hover:not(.active) {
+  background: var(--secondary-blue);
+  color: var(--white);
+}
+
+/* 案例卡片网格：自适应列数布局 */
+.casesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+/* 案例卡片：单个案例项目 */
+.caseCard {
+  background: var(--white);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+
+/* 案例卡片悬停效果：向上浮起并增强阴影 */
+.caseCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* 案例图片容器 */
+.caseImage {
+  height: 220px;
+  overflow: hidden;
+}
+
+/* 案例图片样式 */
+.caseImage .image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.3s ease;
+}
+
+/* 案例卡片悬停时图片放大效果 */
+.caseCard:hover .caseImage .image {
+  transform: scale(1.1);
+}
+
+/* 案例内容区域 */
+.caseContent {
+  padding: 25px;
+}
+
+/* 案例标题 */
+.caseContent h3 {
+  color: var(--primary-blue);
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+}
+
+/* 案例描述文字 */
+.caseContent p {
+  color: var(--text-gray);
+  margin-bottom: 15px;
+}
+
+/* 案例标签容器：Flex布局，允许换行 */
+.caseTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+/* 案例标签：显示案例类别 */
+.caseTag {
+  background: var(--light-gray);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: var(--primary-blue);
+}
+
+/* 案例卡片中的查看详情按钮：红色渐变样式（与yiyang.html一致） */
+.caseContent .btn {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--accent-red), #c1121f);
+  color: var(--white);
+  padding: 14px 32px;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: var(--transition);
+  box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* 查看详情按钮悬停效果 */
+.caseContent .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 20px rgba(230, 57, 70, 0.4);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .cases {
+    padding: 60px 0;
+  }
+  
+  .sectionTitle h2 {
+    font-size: 2rem;
+  }
+  
+  .casesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+

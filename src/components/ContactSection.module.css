@@ -1,0 +1,287 @@
+/* ============================================
+   联系我们区域样式
+   ============================================ */
+.contact {
+  background-color: var(--light-gray);
+  position: relative;
+  padding: 100px 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.contact .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.sectionTitle {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.sectionTitle h2 {
+  font-size: 2.5rem;
+  color: var(--primary-blue);
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+}
+
+.sectionTitle h2::after {
+  content: '';
+  position: absolute;
+  width: 70px;
+  height: 3px;
+  background: var(--accent-red);
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.sectionTitle p {
+  color: var(--text-gray);
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
+
+/* 联系内容区域：使用Flex布局分为左右两部分 */
+.contactContent {
+  display: flex;
+  gap: 50px;
+  align-items: stretch;
+}
+
+/* 左侧联系信息区域 */
+.contactInfo {
+  flex: 1;
+  background: var(--white);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 联系信息标题 */
+.contactInfo h3 {
+  color: var(--primary-blue);
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+/* 联系详细信息列表容器 */
+.contactDetails {
+  margin-bottom: 30px;
+}
+
+/* 单个联系信息项：图标+文字 */
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+/* 联系信息项悬停效果：浅蓝色背景 */
+.contactItem:hover {
+  background: rgba(26, 75, 140, 0.05);
+}
+
+/* 联系信息图标：圆形蓝色背景 */
+.contactIcon {
+  background: var(--primary-blue);
+  color: var(--white);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+/* 联系信息文字标题 */
+.contactText h4 {
+  margin-bottom: 10px;
+  color: var(--dark-gray);
+}
+
+/* 联系信息文字内容 */
+.contactText p {
+  color: var(--text-gray);
+  margin: 0;
+}
+
+.contactInfo > p {
+  color: var(--text-gray);
+
+  padding: 15px;
+
+  background: rgba(230, 57, 70, 0.02);
+}
+
+/* 右侧询价表单容器 */
+.contactFormContainer {
+  flex: 1;
+  background: var(--white);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+/* 表单标题 */
+.contactForm h3 {
+  color: var(--primary-blue);
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+/* 表单字段组容器 */
+.formGroup {
+  margin-bottom: 20px;
+}
+
+/* 表单标签样式 */
+.formGroup label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--dark-gray);
+}
+
+/* 表单输入控件样式 */
+.formControl {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  height: 50px;
+}
+
+/* 表单输入控件获得焦点时的样式 */
+.formControl:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 2px rgba(26, 75, 140, 0.2);
+}
+
+/* 文本域（多行输入框）样式 */
+textarea.formControl {
+  min-height: 30px;
+  resize: vertical;
+}
+
+/* 表单提交按钮：红色渐变样式（与yiyang.html一致） */
+.formSubmit {
+  width: 100%;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, var(--accent-red), #c1121f);
+  color: var(--white);
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+  text-align: center;
+  display: block;
+}
+
+/* 表单提交按钮悬停效果 */
+.formSubmit:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 20px rgba(230, 57, 70, 0.4);
+}
+
+/* 表单提交按钮激活状态（点击时） */
+.formSubmit:active {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(230, 57, 70, 0.3);
+}
+
+/* 表单提交按钮禁用状态 */
+.formSubmit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.formSubmit:disabled:hover {
+  transform: none;
+  box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+}
+
+/* 提交消息提示 */
+.submitMessage {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  text-align: center;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.submitMessage.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.submitMessage.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* 响应式设计 */
+@media (max-width: 992px) {
+  .contactContent {
+    flex-direction: column;
+  }
+  
+  .sectionTitle h2 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact {
+    padding: 60px 0;
+  }
+  
+  .sectionTitle h2 {
+    font-size: 2rem;
+  }
+  
+  /* 移动端按钮优化 */
+  .formSubmit {
+    padding: 12px 24px;
+    font-size: 0.95rem;
+  }
+}
+
