@@ -28,12 +28,12 @@ export async function POST(request: NextRequest) {
     }
 
     // 获取环境变量 - 支持公司邮箱SMTP配置
-    const smtpHost = process.env.SMTP_HOST || 'smtp.yymarines.com' // SMTP服务器地址
-    const smtpPort = parseInt(process.env.SMTP_PORT || '587', 10) // SMTP端口，默认587
+    const smtpHost = process.env.SMTP_HOST || 'smtp.qiye.aliyun.com' // SMTP服务器地址
+    const smtpPort = parseInt(process.env.SMTP_PORT || '465', 10) // SMTP端口，默认587
     const smtpSecure = process.env.SMTP_SECURE === 'true' || process.env.SMTP_PORT === '465' // 是否使用SSL/TLS
     const smtpUser = process.env.SMTP_USER || process.env.COMPANY_EMAIL || 'yyservice@yymarines.com' // 发件人邮箱
-    const smtpPassword = process.env.SMTP_PASSWORD || process.env.COMPANY_EMAIL_PASSWORD // 邮箱密码或授权码
-    const recipientEmail = process.env.RECIPIENT_EMAIL || smtpUser // 接收询价的邮箱，默认使用发送邮箱
+    const smtpPassword = process.env.SMTP_PASSWORD || process.env.COMPANY_EMAIL_PASSWORD || 'P!9kL2s@4dF7gR%' // 邮箱密码或授权码
+    const recipientEmail = process.env.RECIPIENT_EMAIL || smtpUser || 'yyservice@yymarines.com' // 接收询价的邮箱，默认使用发送邮箱
 
     if (!smtpUser || !smtpPassword) {
       console.error('公司邮箱配置缺失')

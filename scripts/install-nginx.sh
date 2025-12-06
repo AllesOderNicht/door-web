@@ -12,6 +12,8 @@ NGINX_SITE_NAME="door-web"
 UPSTREAM_PORT="3000"
 UPSTREAM_HOST="localhost"
 SERVER_NAME="www.yymarines.com yymarines.com"
+PROJECT_NAME="door-web"
+PROJECT_DIR="${PROJECT_DIR:-$(pwd)}"
 
 # 颜色输出
 RED='\033[0;31m'
@@ -261,6 +263,102 @@ configure_firewall() {
     log_success "防火墙配置完成（已允许 HTTP 80 端口）"
 }
 
+# 加载nvm环境
+load_nvm() {
+    set +e
+    export NVM_DIR="$HOME/.nvm"
+    if [ -s "$NVM_DIR/nvm.sh" ]; then
+        \. "$NVM_DIR/nvm.sh" 2>/dev/null
+        local load_result=$?
+        if [ $load_result -ne 0 ]; then
+            set -e
+            return 1
+        fi
+    else
+        set -e
+        return 1
+    fi
+    if [ -s "$NVM_DIR/bash_completion" ]; then
+        \. "$NVM_DIR/bash_completion" 2>/dev/null
+    fi
+    set -e
+    return 0
+}
+
+# 处理PM2：停止已有进程并启动新的
+handle_pm2() {
+    log_info "处理 PM2 进程..."
+    
+    # 尝试加载 nvm 环境（如果存在）
+    load_nvm 2>/dev/null || true
+    
+    # 检查 pm2 是否安装
+    if ! command -v pm2 &> /dev/null; then
+        log_warning "PM2 未安装，跳过 PM2 处理"
+        return 0
+    fi
+    
+    cd "$PROJECT_DIR" || {
+        log_warning "无法进入项目目录 $PROJECT_DIR，跳过 PM2 处理"
+        return 0
+    }
+    
+    # 检查是否有运行中的 pm2 进程
+    set +e
+    local pm2_exists=$(pm2 list 2>/dev/null | grep -E "$PROJECT_NAME.*online|$PROJECT_NAME.*stopped" | wc -l)
+    set -e
+    
+    if [ "$pm2_exists" -gt 0 ]; then
+        log_info "检测到已存在的 PM2 进程（可能是第二次部署），正在停止并删除..."
+        
+        # 停止并删除已有的 pm2 进程
+        set +e
+        pm2 stop "$PROJECT_NAME" 2>/dev/null || true
+        sleep 1
+        pm2 delete "$PROJECT_NAME" 2>/dev/null || true
+        set -e
+        
+        log_success "已停止并删除旧的 PM2 进程"
+    else
+        log_info "未检测到已存在的 PM2 进程（首次部署）"
+    fi
+    
+    # 启动新的 PM2 进程
+    log_info "启动新的 PM2 进程..."
+    
+    set +e
+    # 检查是否存在 ecosystem.config.js
+    if [ -f "ecosystem.config.js" ]; then
+        log_info "使用 ecosystem.config.js 启动应用..."
+        pm2 start ecosystem.config.js --env production 2>&1
+    else
+        log_info "使用 PM2 直接启动应用..."
+        pm2 start npm --name "$PROJECT_NAME" -- start 2>&1
+    fi
+    local start_result=$?
+    set -e
+    
+    if [ $start_result -eq 0 ]; then
+        # 等待应用启动
+        sleep 3
+        
+        # 检查应用状态
+        set +e
+        if pm2 list | grep -q "$PROJECT_NAME.*online"; then
+            log_success "PM2 进程启动成功"
+            
+            # 保存 PM2 配置
+            pm2 save 2>/dev/null
+        else
+            log_warning "PM2 进程已启动，但状态可能异常"
+            pm2 list
+        fi
+        set -e
+    else
+        log_warning "PM2 启动失败，可能应用已在运行或配置有误"
+    fi
+}
+
 # 显示完成信息
 show_completion_info() {
     log_success "🎉 Nginx 安装和配置完成！"
@@ -330,6 +428,9 @@ main() {
     start_nginx
     configure_nginx
     configure_firewall
+    
+    # 处理 PM2：第二次部署时停止已有进程并启动新的
+    handle_pm2
     
     show_completion_info
 }
