@@ -47,7 +47,7 @@ export const Footer = () => {
             <h4>{t('footer.contactInfo')}</h4>
             <ul>
               <li><Link href="/#contact"><FontAwesomeIcon icon={faMapMarkerAlt} /> {t('contact.info.address.content')}</Link></li>
-              <li><a href="tel:+8619302176367"><FontAwesomeIcon icon={faPhoneAlt} /> {t('contact.info.phone.content')}</a></li>
+              <li><a href="tel:+86 18633879967"><FontAwesomeIcon icon={faPhoneAlt} /> {t('contact.info.phone.content')}</a></li>
               <li><a href="mailto:yyservice@yymarines.com"><FontAwesomeIcon icon={faEnvelope} /> {t('contact.info.email.content')}</a></li>
               <li><Link href="/#contact"><FontAwesomeIcon icon={faClock} /> {t('contact.info.hours.content')}</Link></li>
             </ul>

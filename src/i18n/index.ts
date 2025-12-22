@@ -17,7 +17,7 @@ const resources = {
 
 // 服务端和客户端都使用相同的初始语言（fallback）
 // 客户端会在 hydration 后从 localStorage 恢复语言设置
-const initialLanguage = 'zh-CN'
+const initialLanguage = 'en-US'
 
 i18n
   .use(LanguageDetector)
@@ -25,7 +25,7 @@ i18n
   .init({
     resources,
     lng: initialLanguage,
-    fallbackLng: 'zh-CN',
+    fallbackLng: 'en-US',
     debug: process.env.NODE_ENV === 'development',
     
     interpolation: {
